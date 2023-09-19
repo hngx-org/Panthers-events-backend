@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Application API</title>
 </head>
 <body>
@@ -35,55 +33,66 @@
     <h3>Installation Steps</h3>
 
     <ol>
+
         <li>Clone the repository:</li>
-    </ol>
-    <code>git clone https://github.com/hngx-org/Panthers-events-backend.git</code>
+        <pre><code>git clone https://github.com/hngx-org/Panthers-events-backend.git</code></pre>
+    
+    
 
-    <ol>
+    
         <li>Change into the parent directory:</li>
-    </ol>
-    <code>cd Panthers-events-backend</code>
+        <pre><code>cd Panthers-events-backend</code></pre>
+    
+    
 
-    <ol>
+    
         <li>Change into the project directory:</li>
-    </ol>
-    <code>cd backend</code>
+        <pre><code>cd backend</code></pre>
+    
+    
 
-    <ol>
+    
         <li>Set up a virtual environment:</li>
-    </ol>
-    <code>py -m venv ENV</code>
+        <pre><code>py -m venv ENV</code></pre>
+    
+    
 
-    <ol>
+    
         <li>Activate your virtual environment:</li>
-    </ol>
-    <code>ENV\Scripts\activate</code>
+        <pre><code>ENV\Scripts\activate</code></pre>
+    
+    
 
-    <ol>
+    
         <li>Install the Python dependencies:</li>
-    </ol>
-    <code>pip install -r requirements.txt</code>
+        <pre><code>pip install -r requirements.txt</code></pre>
+    
+    
 
-    <ol>
+    
         <li>Configure the database settings in the settings.py file according to your chosen database system.</li>
-    </ol>
+    
 
-    <ol>
+    
         <li>Apply migrations to create the database schema:</li>
-    </ol>
-    <code>python manage.py migrate</code>
+        <pre><code>python manage.py migrate</code></pre>
+    
+    
 
-    <ol>
+    
         <li>Create a superuser for administrative access:</li>
-    </ol>
-    <code>python manage.py createsuperuser</code>
+        <pre><code>python manage.py createsuperuser</code></pre>
+    
+    
 
-    <ol>
+    
         <li>Start the development server:</li>
-    </ol>
-    <code>python manage.py runserver</code>
+        <pre><code>python manage.py runserver</code></pre>
 
-    <p>The API should now be running locally at http://localhost:8000/</p>
+    </ol>
+    
+
+    <p>The API should now be running locally at <a href="http://localhost:8000/">http://localhost:8000/</a>.</p>
 
     <br/>
 
