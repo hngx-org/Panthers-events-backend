@@ -38,6 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     description = models.TextField(blank=True)
     address = models.TextField(blank=True)
     
+    
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
@@ -48,8 +49,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(AbstractBaseUser, PermissionsMixin):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = 'profile')
     image = models.ImageField(upload_to='images/', blank=True)
+    
 
     def __str__(self) -> str:
         return f'{self.user.username} Profile'
