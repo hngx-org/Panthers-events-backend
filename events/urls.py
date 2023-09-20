@@ -1,9 +1,11 @@
-from django.urls import path
-import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import EventViewSet, CommentViewSet
 
+router = DefaultRouter()
+router.register(r'event', EventViewSet)
+router.register(r"comment",CommentViewSet)
 
 urlpatterns = [
-    path('events/', views.CreateAPIView.as_view(), name='create-event'),
-    path('events/<int:id>/', views.RetrieveAPIView.as_view(), name='event-detail'),
-    path('events/', views.EventListAPIView.as_view(), name='event-list')
+    path('', include(router.urls)),
 ]
