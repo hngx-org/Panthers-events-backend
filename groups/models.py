@@ -1,6 +1,7 @@
 from django.db import models
-from users.models import User  
-from events.models import Event 
+from users.models import User
+from events.models import Event
+
 
 class Group(models.Model):
     id = models.CharField(max_length=60, primary_key=True)

@@ -9,5 +9,3 @@ router.register(r'groupevents', GroupEventsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('groups/<uuid:groupId>/members/<uuid:userId>', GroupUserView.as_view(), name="group_user")
-]

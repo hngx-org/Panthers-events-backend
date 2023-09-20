@@ -1,10 +1,10 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import EventViewSet, CommentViewSet
+from .views import UserViewSet
 
 router = DefaultRouter()
-router.register(r'event', EventViewSet)
-router.register(r"comment",CommentViewSet)
+router.register(r'event', UserViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls)),
