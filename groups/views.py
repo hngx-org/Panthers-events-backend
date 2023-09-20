@@ -8,10 +8,6 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
 class UserGroupsViewSet(viewsets.ModelViewSet):
     queryset = UserGroups.objects.all()
     serializer_class = UserGroupsSerializer
