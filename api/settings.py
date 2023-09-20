@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'users',
     'events',
     "rest_framework",
-    "group"
+    'groups.apps.GroupsConfig'
     
 ]
 

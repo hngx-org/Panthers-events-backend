@@ -1,12 +1,12 @@
 from django.db import models
 from PIL import Image
-
-# Create your models here.
-
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
+
+# Create your models here.
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
@@ -47,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-class Profile(AbstractBaseUser, PermissionsMixin):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/', blank=True)
 
