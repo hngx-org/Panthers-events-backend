@@ -5,7 +5,7 @@ from .models import Group, UserGroups, GroupEvents
 from users.models import User
 from .serializers import GroupSerializer, UserGroupsSerializer, GroupEventsSerializer
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.db.models import Q
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
@@ -34,7 +34,10 @@ class GroupUserView(APIView):
         except:
             return JsonResponse({"error":"user with id {} does not exist".format(userId)}, status=status.HTTP_404_NOT_FOUND)
 
-        #get and delete the usergroup object or throw error if user is not in the group
-        get_object_or_404(UserGroups, user=user).delete()
-
-        return JsonResponse({"message":"{} has been removed from {} successfully".format(user.username, group.title)}, status=status.HTTP_200_OK)
+        #get and delete the usergroup object or return error if user isn't in the group
+        if UserGroups.objects.filter(Q(user=user) & Q(group=group)).exists():
+            UserGroups.objects.filter(Q(user=user) & Q(group=group)).delete()
+            return JsonResponse({"message":"{} has been removed from {} successfully".format(user.username, group.title)}, status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({"error":"{} does not belong to the {} group}".format(user.username, group.title)}, status=status.HTTP_404_NOT_FOUND)
+        
