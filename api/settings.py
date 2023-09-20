@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'users',
     'events',
     "rest_framework",
-    'groups.apps.GroupsConfig'
-    
+    "groups",
+    "drf_yasg",
+
 ]
 
 MIDDLEWARE = [

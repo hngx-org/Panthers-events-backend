@@ -1,21 +1,8 @@
-from rest_framework import serializers
-from .models import CustomUserManager, User, Profile
+from rest_framework.serializers import ModelSerializer
+from events.models import *
 
 
-
-class CustomUserManagerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUserManager
-        fields = '__all__'
-        
-        
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
-        
-        
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
         fields = '__all__'
