@@ -25,23 +25,16 @@ class CustomUserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=150, unique=True)
+    name = models.CharField(max_length=150, unique=True)
+    email = models.EmailField(unique=True)
+    avatar = models.ImageField(upload_to="user_profile_images/", blank=True)
     password = models.CharField(max_length=128)  # Store hashed password
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(default=timezone.now)
 
-    date_of_birth = models.DateField(null=True, blank=True)
-    first_name = models.CharField(max_length=30, blank=True)
-    last_name = models.CharField(max_length=30, blank=True)
-    gender = models.CharField(max_length=10, blank=True)
-    description = models.TextField(blank=True)
-    address = models.TextField(blank=True)
     
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['name']
 
     def __str__(self):
         return self.email
