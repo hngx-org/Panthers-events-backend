@@ -43,5 +43,9 @@ class User(models.Model):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.interested_events = None
+
     def __str__(self):
         return self.email
