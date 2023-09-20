@@ -57,6 +57,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "api.urls"
 
+# to store avatar images - django will create specified directory
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
