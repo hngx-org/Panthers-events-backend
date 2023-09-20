@@ -23,7 +23,7 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(email, username, password, **extra_fields)
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(models.Model):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=128)  # Store hashed password
