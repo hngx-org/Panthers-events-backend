@@ -16,7 +16,7 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        python-version: [3.11.0]
+        python-version: [3.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -38,18 +38,18 @@ jobs:
       #   run: |
       #     python manage.py test
   
-deploy:
-    runs-on: ubuntu-latest
-    name: deploy our django application to heroku
-    needs: [build]
-    steps:
-       - name: Checkout code
-         uses: actions/checkout@v2
+  deploy:
+      runs-on: ubuntu-latest
+      name: deploy our django application to heroku
+      needs: [build]
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
 
-       - name: Deploy app
-         uses: akhileshns/heroku-deploy@v3.12.14
-         with:
-            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-            heroku_email: "johndbizz@gmail.com"
-            branch: "main"
+        - name: Deploy app
+          uses: akhileshns/heroku-deploy@v3.12.14
+          with:
+              heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+              heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+              heroku_email: "johndbizz@gmail.com"
+              branch: "main"
