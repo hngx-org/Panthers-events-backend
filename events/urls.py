@@ -8,4 +8,5 @@ urlpatterns = [
     path('api/events/<int:pk>/', views.EventRetrieveAPIView.as_view(), name='event-retrieve'),
     path('api/users/<int:userId>/interests/<int:eventId>/', views.ExpressInterestView.as_view(),
          name='express-interest'),
+    path('api/users/<int:userId>/interests/<int:eventId>/',views.DeleteExpressInterestView.as_view(),name='delete-express-interest'),     
 ]
