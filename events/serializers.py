@@ -17,3 +17,9 @@ class CommentSerializer(ModelSerializer):
 class ExpressInterestSerializer(serializers.Serializer):
     userId = serializers.IntegerField()
     eventId = serializers.IntegerField()
+
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ('image')
