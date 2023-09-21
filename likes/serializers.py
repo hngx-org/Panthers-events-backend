@@ -6,3 +6,5 @@ class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = '__all__'
+        # Added For Proper Data Response
+        depth = 1
