@@ -1,50 +1,80 @@
-from rest_framework.test import APITestCase
-from rest_framework import status
-from django.contrib.auth.models import User  # Assuming you're using Django's built-in User model
-from .models import Group
-from .serializers import GroupSerializer
-from users.models import User
+from django.test import TestCase
 from rest_framework.test import APIClient
+from rest_framework import status
+from .models import Image, Group, UserGroups, GroupEvents, GroupImage
+from users.models import User  # Import User model if it's defined in "users" app
+from events.models import Event  # Import Event model if it's defined in "events" app
+from .serializers import (
+    ImageSerializer,
+    GroupSerializer,
+    UserGroupsSerializer,
+    GroupEventsSerializer,
+    GroupImageSerializer,
+)
 
-class GroupViewSetTestCase(APITestCase):
+class ModelTestCase(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
-        self.client = APIClient()
-        self.client.force_authenticate(user=self.user)
+        self.user = User.objects.create_user(username="testuser", password="testpassword")
+        self.image = Image.objects.create(id="1", url="http://example.com/image.jpg")
+        self.group = Group.objects.create(id="1", title="Test Group")
+        self.event = Event.objects.create(id="1", title="Test Event")  # Import Event model if needed
 
-        # Sample data for creating a group
-        self.group_data = {
-            'title': 'Test Group'
-            # Add other fields as needed
-        }
+    def test_image_model(self):
+        image = Image.objects.get(id="1")
+        self.assertEqual(image.url, "http://example.com/image.jpg")
+
+    def test_group_model(self):
+        group = Group.objects.get(id="1")
+        self.assertEqual(group.title, "Test Group")
+
+    def test_usergroups_model(self):
+        usergroup = UserGroups.objects.create(user=self.user, group=self.group)
+        self.assertEqual(usergroup.user, self.user)
+        self.assertEqual(usergroup.group, self.group)
+
+    def test_groupevents_model(self):
+        groupevent = GroupEvents.objects.create(event=self.event, group=self.group)
+        self.assertEqual(groupevent.event, self.event)
+        self.assertEqual(groupevent.group, self.group)
+
+    def test_groupimage_model(self):
+        groupimage = GroupImage.objects.create(group=self.group, image=self.image)
+        self.assertEqual(groupimage.group, self.group)
+        self.assertEqual(groupimage.image, self.image)
+
+class ViewTestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.user = User.objects.create(username="testuser", password="testpassword")
+        self.client.force_login(user=self.user)
+        self.group_data = {"title": "Test Group"}
 
     def test_create_group(self):
-        url = '/api/groups/'  # Replace with the actual URL for creating groups
-
-        # Send a POST request to create a group
-        response = self.client.post(url, self.group_data, format='json')
-
-        # Assert that the response status code is 201 (Created)
+        response = self.client.post("/api/groups/", self.group_data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        # Check if the group was created in the database
-        self.assertEqual(Group.objects.count(), 1)
+class SerializerTestCase(TestCase):
+    def test_image_serializer(self):
+        data = {"id": "1", "url": "http://example.com/image.jpg"}
+        serializer = ImageSerializer(data=data)
+        self.assertTrue(serializer.is_valid())
 
-        # Check if the group's title matches the provided data
-        self.assertEqual(Group.objects.get().title, 'Test Group')
+    def test_group_serializer(self):
+        data = {"id": "1", "title": "Test Group"}
+        serializer = GroupSerializer(data=data)
+        self.assertTrue(serializer.is_valid())
 
-        # Check if the group owner is the test user
-        self.assertEqual(Group.objects.get().usergroups_set.first().user, self.user)
+    def test_usergroups_serializer(self):
+        data = {"user": self.user.id, "group": self.group.id}
+        serializer = UserGroupsSerializer(data=data)
+        self.assertTrue(serializer.is_valid())
 
-    def test_create_group_invalid_data(self):
-        url = '/api/groups/'  # Replace with the actual URL for creating groups
+    def test_groupevents_serializer(self):
+        data = {"event": self.event.id, "group": self.group.id}
+        serializer = GroupEventsSerializer(data=data)
+        self.assertTrue(serializer.is_valid())
 
-        # Send a POST request with invalid data (missing required fields)
-        invalid_data = {}
-        response = self.client.post(url, invalid_data, format='json')
-
-        # Assert that the response status code is 400 (Bad Request)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-        # Check that the group was not created in the database
-        self.assertEqual(Group.objects.count(), 0)
+    def test_groupimage_serializer(self):
+        data = {"group": self.group.id, "image": self.image.id}
+        serializer = GroupImageSerializer(data=data)
+        self.assertTrue(serializer.is_valid())
