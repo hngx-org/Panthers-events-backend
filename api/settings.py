@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "groups",
     "drf_yasg",
+    "likes",
 
 ]
 
