@@ -4,7 +4,7 @@ from . views import CreateImage, ListImage
 
 
 urlpatterns = [
-    path('api/events/', views.EventListAPIView.as_view(), name='event-list-create'),
+    path('api/events/', views.EventListCreateAPIView.as_view(), name='event-list-create'),
     path('api/events/<int:pk>/', views.RetrieveEventAPIView.as_view(), name='event-retrieve'),
 
     path('api/users/<int:userId>/interests/<int:eventId>/', views.ExpressInterestView.as_view(),
