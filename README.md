@@ -60,7 +60,7 @@ Before setting up the project locally, ensure you have the following prerequisit
         python manage.py createsuperuser
 
 
-10. Start the development server:
+10. Start the development server: 
  ```
  python manage.py runserver
  ```
