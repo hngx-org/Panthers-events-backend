@@ -1,8 +1,8 @@
-from rest_framework.serializers import ModelSerializer
-from events.models import *
+from rest_framework import serializers
+from .models import User
 
 
-class UserSerializer(ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'name', 'email', 'avatar']
+        fields = ['id', 'name', 'email', 'avatar', 'created_at', 'updated_at']
