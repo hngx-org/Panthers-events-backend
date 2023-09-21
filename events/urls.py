@@ -14,7 +14,3 @@ urlpatterns = [
     path('api/comments/<int:commentId>/images/', CreateImage.as_view({'post': 'create'}), name='add-comment-image'),
     path('api/comments/<int:commentId>/images/list/', ListImage.as_view({'get': 'list'}), name='list-comment-images')
 ]
-    path('api/events/', views.CreateEventAPIView.as_view(), name='event-create'),
-    path('api/events/<int:pk>/', views.RetrieveEventAPIView.as_view(), name='event-retrieve'),
-]
-
