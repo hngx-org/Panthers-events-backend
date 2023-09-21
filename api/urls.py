@@ -9,7 +9,7 @@ schema_view = get_schema_view(
         title="EventAPI.v1",
         default_version="v1",
         description="""
-            
+            This is an evennt application to manage events for users.
         """,
     ),
     public=True,
