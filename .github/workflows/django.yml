@@ -54,3 +54,4 @@ jobs:
               heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
               heroku_email: "johndbizz@gmail.com"
               branch: "main"
+              dontuseforce: 1
