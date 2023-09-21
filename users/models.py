@@ -24,10 +24,9 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, username, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
     name = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
-    avatar = models.ImageField(upload_to="user_profile_images/", blank=True)
+    avatar = models.ImageField(upload_to='images/', blank=True)
     password = models.CharField(max_length=128)  # Store hashed password
 
     
@@ -39,18 +38,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images/', blank=True)
-
-    def __str__(self) -> str:
-        return f'{self.user.username} Profile'
-
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        img = Image.open(self.image.path)
+        img = Image.open(self.avatar.path)
 
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
