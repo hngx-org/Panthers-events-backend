@@ -115,7 +115,7 @@ if IS_HEROKU_APP:
             'NAME': r9mq3xg1x99kw838,
             'USER': ze0hok13375mjwbf,
             'PASSWORD': xc2hk3e03nfx6wr2,
-            'HOST': ulsq0qqx999wqz84.chr7pe7iynqr.eu-west-1.rds.amazonaws.com,
+            'HOST': 'ulsq0qqx999wqz84.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
         }
 }
 else:
