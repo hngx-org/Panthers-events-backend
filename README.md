@@ -103,7 +103,7 @@ To access most endpoints of the API, you need to authenticate. Use the Token-bas
 
 ## Getting Started
 
-To get started with the project, refer to the [Installation Instructions](#installation-instructions) and [Usage Instructions](#usage-instructions) sections. Familiarize yourself with the API endpoints by exploring the [API Documentation](#api-documentation) provided.
+To get started with the project, refer to the [Installation Instructions](#installation-instructions) and [Usage Instructions](#usage-instructions) sections. Familiarize yourself with the API endpoints by exploring the [API Documentation](http://127.0.0.1:8000/redoc/) provided.
 
 ## Configuration
 
@@ -127,7 +127,7 @@ For deployment to a production environment, please refer to our [Deployment Inst
 
 ## API Documentation (if applicable)
 
-You can access the API documentation [here](#api-documentation) when the server is running. It provides comprehensive information on how to use the API endpoints.
+You can access the API documentation [here](http://127.0.0.1:8000/redoc/) when the server is running. It provides comprehensive information on how to use the API endpoints.
 
 ## License Information
 
