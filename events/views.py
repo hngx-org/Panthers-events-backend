@@ -1,4 +1,4 @@
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, DestroyAPIView
+from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveAPIView, DestroyAPIView
 from events.models import Event
 from events.serializers import EventSerializer, ExpressInterestSerializer
 from users.models import User
@@ -8,12 +8,7 @@ from .serializers import ImageSerializer
 from rest_framework.response import Response
 
 
-class EventListAPIView(ListAPIView):
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-
-
-class CreateEventAPIView(CreateAPIView):
+class EventListCreateAPIView(ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
