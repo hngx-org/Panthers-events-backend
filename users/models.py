@@ -39,6 +39,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         super().__init__(args, kwargs)
         self.interested_events = None
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.interested_events = None
+
     def __str__(self):
         return self.email
 
