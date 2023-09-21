@@ -152,4 +152,3 @@ class ListImage(viewsets.ModelViewSet):
         images = Image.objects.filter(comment=comment)
         serializer = ImageSerializer(images, many=True)
         return Response(serializer.data)
-    
