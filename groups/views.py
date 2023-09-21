@@ -1,12 +1,29 @@
-from rest_framework import viewsets
+from rest_framework import viewsets    
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Group, UserGroups, GroupEvents
 from .serializers import GroupSerializer, UserGroupsSerializer, GroupEventsSerializer
+from rest_framework.authentication import TokenAuthentication
 
 class GroupViewSet(viewsets.ModelViewSet):
+    authentication_classes = [TokenAuthentication]
     queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+    serializer_class = GroupSerializer     
+
+
+    def create(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return Response({'detail': 'Authentication credentials were not provided.'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            group = serializer.save()  # Create the group object
+            group_owner = request.user
+            group.usergroups_set.create(user=group_owner)
+            return Response(GroupSerializer(group).data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
 
 class UserGroupsViewSet(viewsets.ModelViewSet):
     queryset = UserGroups.objects.all()
