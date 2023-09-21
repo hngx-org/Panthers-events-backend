@@ -22,7 +22,7 @@ class RetrieveEventAPIView(RetrieveAPIView):
 
 
 class ExpressInterestView(CreateAPIView):
-    serializer_class = EventSerializer
+    serializer_class = ExpressInterestSerializer
 
     def create(self, request, *args, **kwargs):
         userId = self.kwargs.get('userId')
