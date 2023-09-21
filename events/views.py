@@ -1,5 +1,4 @@
-
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, DestroyAPIView
+from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveAPIView, DestroyAPIView
 from events.models import Event, Comment
 from events.serializers import EventSerializer, ExpressInterestSerializer, CommentSerializer
 from users.models import User
