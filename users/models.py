@@ -9,14 +9,3 @@ class User(models.Model):
     
     USERNAME_FIELD = 'id'
     REQUIRED_FIELDS = ['name', 'email', 'avatar']
-    
-    def __str__(self):
-        return self.name
-    
-    @property
-    def is_anonymous(self):
-        return False
-    
-    @property
-    def is_authenticated(self):
-        return True
