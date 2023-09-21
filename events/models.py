@@ -22,3 +22,10 @@ class Comment(models.Model):
     
     def __str__(self) -> str:
         return f'{self.pk} - {self.creator}'
+    
+class Image(models.Model):
+    comment = models.ForeignKey('Comment', on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='comment_images/')
+
+    def __str__(self) -> str:
+        return f"Image for Comment {self.comment.id}"
