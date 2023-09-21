@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import status
 from .models import Image, Group, UserGroups, GroupEvents, GroupImage
 from .serializers import (ImageSerializer,
                           GroupSerializer,
@@ -10,6 +12,7 @@ from .serializers import (ImageSerializer,
 class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
+
 
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()

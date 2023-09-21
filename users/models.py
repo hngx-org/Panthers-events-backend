@@ -1,12 +1,12 @@
 from django.db import models
 from PIL import Image
-
-# Create your models here.
-
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
+
+# Create your models here.
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
@@ -24,40 +24,32 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, username, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
+    name = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=150, unique=True)
+    avatar = models.ImageField(upload_to='images/', blank=True)
     password = models.CharField(max_length=128)  # Store hashed password
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(default=timezone.now)
 
-    date_of_birth = models.DateField(null=True, blank=True)
-    first_name = models.CharField(max_length=30, blank=True)
-    last_name = models.CharField(max_length=30, blank=True)
-    gender = models.CharField(max_length=10, blank=True)
-    description = models.TextField(blank=True)
-    address = models.TextField(blank=True)
     
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['name']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.interested_events = None
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.interested_events = None
 
     def __str__(self):
         return self.email
 
-
-class Profile(AbstractBaseUser, PermissionsMixin):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images/', blank=True)
-
-    def __str__(self) -> str:
-        return f'{self.user.username} Profile'
-
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        img = Image.open(self.image.path)
+        img = Image.open(self.avatar.path)
 
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)

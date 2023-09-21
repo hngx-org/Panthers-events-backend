@@ -6,6 +6,7 @@ from .views import (ImageViewSet,
                     GroupEventsViewSet,
                     GroupImageViewSet)
 
+
 router = DefaultRouter()
 router.register(r'images', ImageViewSet)
 router.register(r'groups', GroupViewSet)
