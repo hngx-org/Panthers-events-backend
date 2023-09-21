@@ -1,6 +1,12 @@
 from django.db import models
 from users.models import User
+from events.models import Comment
 
-# Create your models here.
 class Like(models.Model):
+    # A simple model that creates a Like Object Instance by adding the User Foreign Key
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f'{user.name} liked comment#{comment.id}'
+    
