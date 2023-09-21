@@ -38,17 +38,18 @@ jobs:
       #   run: |
       #     python manage.py test
   
-  deploy:
+deploy:
     runs-on: ubuntu-latest
-    name: deploy our django application to digital ocean
+    name: deploy our django application to heroku
     needs: [build]
     steps:
        - name: Checkout code
          uses: actions/checkout@v2
 
-       - name: DigitalOcean App Platform deployment
-         uses: digitalocean/app_action@v1.1.5
+       - name: Deploy app
+         uses: akhileshns/heroku-deploy@v3.12.14
          with:
-            app_name: event-app-api
-            token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-            # branch: "master"
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+            heroku_email: "johndbizz@gmail.com"
+            branch: "main"
