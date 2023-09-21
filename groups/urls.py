@@ -9,3 +9,4 @@ router.register(r'groupevents', GroupEventsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+]
