@@ -39,13 +39,15 @@
   - [`/likes/`](###`/likes/`)
   - [`/likes/`](#get-all-likes-on-a-comment)
 
-- [Usage Examples](##Usage Examples)
-  - [Events](##events)
-  - [Groups](##groups)
-  - [Group Images](##group-images)
-  - [Group Events](##GROUP EVENTS)
-  - [Images](##images)
-  - [User Groups](##user-groups)
+- [Usage Examples](#usage-examples)
+  - [User](#user-3)
+  - [Events](#events-1)
+  - [Groups](#groups-3)
+  - [Group Images](#group-images-2)
+  - [Group Events](#group-events-1)
+  - [Images](#images)
+  - [Likes](#likes-3)
+  - [User Groups](#user-groups)
 
 ## USER
 
