@@ -21,3 +21,4 @@ class User(models.Model):
     @property
     def is_authenticated(self):
         return True
+    
