@@ -6,11 +6,9 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="EventAPI.v1",
+        title="Team Panther EventAPI",
         default_version="v1",
-        description="""
-            This is an evennt application to manage events for users.
-        """,
+        description="This is the Team Panther event application to manage events for our users.",
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
@@ -26,9 +24,12 @@ urlpatterns = [
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
+    
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
     path("admin/", admin.site.urls),
     path("api/", include("groups.urls") ),
     path("api/", include("events.urls") ),
-    path("api/", include("users.urls") )
+    path("api/", include("users.urls") ),
+    # Added Endpoint for Listing a comment Like
+    path("api/", include("likes.urls") ),
 ]
