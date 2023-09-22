@@ -1384,36 +1384,36 @@ Example Response:
 	{
 		"id": 1,
 		"user": {
-							"id": 1,
-							"name": "John Doe",
-							"email": "john@mail.com",
-							"avatar": "",
-							"created_at": "",
-							"updated_at": ""
-						},
+			"id": 1,
+			"name": "John Doe",
+			"email": "john@mail.com",
+			"avatar": "",
+			"created_at": "2023-09-22T10:49:56.059747Z",
+			"updated_at": "2023-09-22T10:49:56.059747Z"
+		},
 		"comment": {
-							"id": 1,
-							"body": "Comment 1",
-							"creator": "John Doe",
-							"event": 1
-						}
+			"id": 1,
+			"body": "Comment 1",
+			"creator": "John Doe",
+			"event": 1
+		}
 	},
 	{
 		"id": 2,
 		"user": {
-							"id": 2,
-							"name": "James Smith",
-							"email": "james@mail.com",
-							"avatar": "",
-							"created_at": "",
-							"updated_at": ""
-						},
+			"id": 2,
+			"name": "James Smith",
+			"email": "james@mail.com",
+			"avatar": "",
+			"created_at": "2023-09-23T10:49:56.059747Z",
+			"updated_at": "2023-09-23T10:49:56.059747Z"
+		},
 		"comment": {
-							"id": 2,
-							"body": "Comment 2",
-							"creator": "John Doe",
-							"event": 2
-						}
+			"id": 2,
+			"body": "Comment 2",
+			"creator": "John Doe",
+			"event": 2
+		}
 	},
   ...
 ]
@@ -1435,19 +1435,19 @@ Example Response:
 	{
 		"id": 3,
 		"user": {
-							"id": 3,
-							"name": "James Smith",
-							"email": "james@mail.com",
-							"avatar": "",
-							"created_at": "",
-							"updated_at": ""
-						},
+			"id": 3,
+			"name": "James Smith",
+			"email": "james@mail.com",
+			"avatar": "",
+			"created_at": "2023-09-22T10:49:56.059747Z",
+			"updated_at": "2023-09-22T10:49:56.059747Z"
+		},
 		"comment": {
-							"id": 3,
-							"body": "Comment 2",
-							"creator": "John Doe",
-							"event": 3
-						}
+			"id": 3,
+			"body": "Comment 2",
+			"creator": "John Doe",
+			"event": 3
+		}
 	}
 ```
 
@@ -1471,19 +1471,19 @@ Example Response:
 	{
 		"id": 4,
 		"user": {
-							"id": 4,
-							"name": "James Smith",
-							"email": "james@mail.com",
-							"avatar": "",
-							"created_at": "",
-							"updated_at": ""
-						},
+			"id": 4,
+			"name": "James Smith",
+			"email": "james@mail.com",
+			"avatar": "",
+			"created_at": "2023-09-22T10:49:56.059747Z",
+			"updated_at": "2023-09-22T10:49:56.059747Z"
+		},
 		"comment": {
-							"id": 4,
-							"body": "Comment 2",
-							"creator": "John Doe",
-							"event": 4
-						}
+			"id": 4,
+			"body": "Comment 2",
+			"creator": "John Doe",
+			"event": 4
+		}
 	}
 ```
 
