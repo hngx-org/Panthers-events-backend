@@ -1099,7 +1099,7 @@ Example Response:
 
 ```
 
-### Update a Group Imae
+### Update a Group Image
 
 Update the details of an existing g by its ID.
 
@@ -1558,17 +1558,17 @@ Example Response:
 }
 ```
 
-### Update an Image
+### Update a User Group
 
-Update the details of an existing image by its ID.
+Update the details of an existing user group by its ID.
 
 ```
-PUT /api/images/{image_id}/
+PUT /api/usergroups/{usergroup_id}/
 
 Request Body:
 	{
-		"id": "3",
-		"url": "<https://example.com/updated-image.jpg>"
+		"user": "Robert Johnson",
+		"group": "Updated Group"
 	}
 
 ```
@@ -1576,22 +1576,23 @@ Request Body:
 Example Response:
 
 ```json
-	{
-		"id": "3",
-		"url": "<https://example.com/updated-image.jpg>"
-	}
+{
+	"id": 4,
+	"user": "Robert Johnson",
+	"group": "Updated Group"
+}
 
 ```
 
-### Delete an Image
+### Delete a User Group
 
 Delete an existing image by its ID.
 
 ```
-DELETE /api/images/{image_id}/
+DELETE /api/usergroups/{usergroup_id}/
 
 ```
 
 No response body is returned for this request.
 
-These examples demonstrate the basic usage of the WetinDeySup API for retrieving, creating, updating, and deleting images.
+These examples demonstrate the basic usage of the WetinDeySup API for retrieving, creating, updating, and deleting user groups.
