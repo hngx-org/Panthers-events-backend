@@ -974,10 +974,10 @@ Example Response:
 
 ```json
 {
-  "id": 3,
-  "title": "New Group",
-	"created_at": "",
-	"updated_at": "",
+	"id": 3,
+	"title": "New Group",
+	"created_at": "2023-09-22T10:49:56.059747Z",
+	"updated_at": "2023-09-22T10:49:56.059747Z",
 	"creator_id": "1"
 }
 
@@ -993,7 +993,7 @@ PUT /api/groups/{group_id}/
 Request Body:
 {
 	"id": "3",
-  "title": "Updated Group",
+	"title": "Updated Group",
 	"creator_id": "1"
 }
 
@@ -1003,10 +1003,10 @@ Example Response:
 
 ```json
 {
-  "id": 3,
-  "title": "Updated Group",
-	"created_at": "",
-	"updated_at": "",
+	"id": 3,
+	"title": "Updated Group",
+	"created_at": "2023-09-22T10:49:56.059747Z",
+	"updated_at": "2023-10-11T10:49:56.059747Z",
 	"creator_id": "1"
 }
 
@@ -1121,10 +1121,10 @@ Example Response:
 
 ```json
 {
-  "id": 3,
-  "title": "Updated Group",
-	"created_at": "",
-	"updated_at": "",
+	"id": 3,
+	"title": "Updated Group",
+	"created_at": "2023-09-22T10:49:56.059747Z",
+	"updated_at": "2023-10-22T10:49:56.059747Z",
 	"image": "<https://example.com/updated-group.jpg>"
 }
 
