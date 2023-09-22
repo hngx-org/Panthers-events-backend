@@ -39,13 +39,15 @@
   - [`/likes/`](###`/likes/`)
   - [`/likes/`](#get-all-likes-on-a-comment)
 
-- [Usage Examples](##Usage Examples)
-  - [Events](##events)
-  - [Groups](##groups)
-  - [Group Images](##group-images)
-  - [Group Events](##GROUP EVENTS)
-  - [Images](##images)
-  - [User Groups](##user-groups)
+- [Usage Examples](#usage-examples)
+  - [User](#user-3)
+  - [Events](#events-1)
+  - [Groups](#groups-3)
+  - [Group Images](#group-images-2)
+  - [Group Events](#group-events-1)
+  - [Images](#images)
+  - [Likes](#likes-3)
+  - [User Groups](#user-groups)
 
 ## USER
 
@@ -622,6 +624,126 @@ The API will respond with a JSON object containing the following fields:
 
 The following examples demonstrate the usage of the WetinDeySup API.
 
+## User
+
+### Get All Users
+
+Retrieve all users from the API.
+
+```
+GET /api/user/
+
+```
+
+Example Response:
+
+```json
+[
+	{
+		"id": 1,
+		"name": "John Doe",
+		"email": "john@mail.com",
+		"avatar": "https://example.com/avatar.jpg",
+		"created_at": "2023-09-22T08:54:32.156734Z",
+		"updated_at": "2023-09-22T08:54:32.156776Z"
+	},
+	{
+		"id": 2,
+		"name": "James Smith",
+		"email": "james@mail.com",
+		"avatar": "https://example.com/avatar-2.jpg",
+		"created_at": "2023-09-22T10:48:21.929635Z",
+		"updated_at": "2023-09-22T10:48:21.929667Z"
+	},
+  ...
+]
+
+```
+
+### Get User Details
+
+Retrieve details of a specific user by its ID.
+
+```
+GET /api/user/{user_id}/
+
+```
+
+Example Response:
+
+```json
+{
+	"id": 2,
+	"name": "James Smith",
+	"email": "james@mail.com",
+	"avatar": "https://example.com/avatar-2.jpg",
+	"created_at": "2023-09-22T10:48:21.929635Z",
+	"updated_at": "2023-09-22T10:48:21.929667Z"
+}
+
+```
+
+### Create a User
+
+Create a new user by providing the required parameters.
+
+```
+POST /api/events/
+
+Request Body:
+	{
+		"name": "New User",
+		"email": "newuser@mail.com",
+		"avatar": "https://example.com/avatar-3.jpg",
+	}
+
+```
+
+Example Response:
+
+```json
+{
+	"id": 3,
+	"name": "New User",
+	"email": "newuser@mail.com",
+	"avatar": "https://example.com/avatar-3.jpg",
+	"created_at": "2023-09-23T10:48:21.929635Z",
+	"updated_at": "2023-09-23T10:48:21.929635Z"
+}
+
+```
+
+### Update a User
+
+Update the details of an existing user by its ID.
+
+```
+PUT /api/user/{user_id}/
+
+Request Body:
+	{
+		"name": "Updated User",
+		"email": "updateduser@mail.com",
+		"avatar": "https://example.com/avatar-3.jpg",
+	}
+
+```
+
+Example Response:
+
+```json
+{
+	"id": 3,
+	"name": "Updated User",
+	"email": "updateduser@mail.com",
+	"avatar": "https://example.com/avatar-3.jpg",
+	"created_at": "2023-09-23T10:48:21.929635Z",
+	"updated_at": "2023-09-23T10:48:21.929667Z"
+}
+
+```
+
+
 ## Events
 
 ### Get All Events
@@ -852,10 +974,10 @@ Example Response:
 
 ```json
 {
-  "id": 3,
-  "title": "New Group",
-	"created_at": "",
-	"updated_at": "",
+	"id": 3,
+	"title": "New Group",
+	"created_at": "2023-09-22T10:49:56.059747Z",
+	"updated_at": "2023-09-22T10:49:56.059747Z",
 	"creator_id": "1"
 }
 
@@ -871,7 +993,7 @@ PUT /api/groups/{group_id}/
 Request Body:
 {
 	"id": "3",
-  "title": "Updated Group",
+	"title": "Updated Group",
 	"creator_id": "1"
 }
 
@@ -881,10 +1003,10 @@ Example Response:
 
 ```json
 {
-  "id": 3,
-  "title": "Updated Group",
-	"created_at": "",
-	"updated_at": "",
+	"id": 3,
+	"title": "Updated Group",
+	"created_at": "2023-09-22T10:49:56.059747Z",
+	"updated_at": "2023-10-11T10:49:56.059747Z",
 	"creator_id": "1"
 }
 
@@ -979,7 +1101,7 @@ Example Response:
 
 ```
 
-### Update a Group Imae
+### Update a Group Image
 
 Update the details of an existing g by its ID.
 
@@ -999,10 +1121,10 @@ Example Response:
 
 ```json
 {
-  "id": 3,
-  "title": "Updated Group",
-	"created_at": "",
-	"updated_at": "",
+	"id": 3,
+	"title": "Updated Group",
+	"created_at": "2023-09-22T10:49:56.059747Z",
+	"updated_at": "2023-10-22T10:49:56.059747Z",
 	"image": "<https://example.com/updated-group.jpg>"
 }
 
@@ -1262,36 +1384,36 @@ Example Response:
 	{
 		"id": 1,
 		"user": {
-							"id": 1,
-							"name": "John Doe",
-							"email": "john@mail.com",
-							"avatar": "",
-							"created_at": "",
-							"updated_at": ""
-						},
+			"id": 1,
+			"name": "John Doe",
+			"email": "john@mail.com",
+			"avatar": "",
+			"created_at": "2023-09-22T10:49:56.059747Z",
+			"updated_at": "2023-09-22T10:49:56.059747Z"
+		},
 		"comment": {
-							"id": 1,
-							"body": "Comment 1",
-							"creator": "John Doe",
-							"event": 1
-						}
+			"id": 1,
+			"body": "Comment 1",
+			"creator": "John Doe",
+			"event": 1
+		}
 	},
 	{
 		"id": 2,
 		"user": {
-							"id": 2,
-							"name": "James Smith",
-							"email": "james@mail.com",
-							"avatar": "",
-							"created_at": "",
-							"updated_at": ""
-						},
+			"id": 2,
+			"name": "James Smith",
+			"email": "james@mail.com",
+			"avatar": "",
+			"created_at": "2023-09-23T10:49:56.059747Z",
+			"updated_at": "2023-09-23T10:49:56.059747Z"
+		},
 		"comment": {
-							"id": 2,
-							"body": "Comment 2",
-							"creator": "John Doe",
-							"event": 2
-						}
+			"id": 2,
+			"body": "Comment 2",
+			"creator": "John Doe",
+			"event": 2
+		}
 	},
   ...
 ]
@@ -1313,19 +1435,19 @@ Example Response:
 	{
 		"id": 3,
 		"user": {
-							"id": 3,
-							"name": "James Smith",
-							"email": "james@mail.com",
-							"avatar": "",
-							"created_at": "",
-							"updated_at": ""
-						},
+			"id": 3,
+			"name": "James Smith",
+			"email": "james@mail.com",
+			"avatar": "",
+			"created_at": "2023-09-22T10:49:56.059747Z",
+			"updated_at": "2023-09-22T10:49:56.059747Z"
+		},
 		"comment": {
-							"id": 3,
-							"body": "Comment 2",
-							"creator": "John Doe",
-							"event": 3
-						}
+			"id": 3,
+			"body": "Comment 2",
+			"creator": "John Doe",
+			"event": 3
+		}
 	}
 ```
 
@@ -1349,19 +1471,19 @@ Example Response:
 	{
 		"id": 4,
 		"user": {
-							"id": 4,
-							"name": "James Smith",
-							"email": "james@mail.com",
-							"avatar": "",
-							"created_at": "",
-							"updated_at": ""
-						},
+			"id": 4,
+			"name": "James Smith",
+			"email": "james@mail.com",
+			"avatar": "",
+			"created_at": "2023-09-22T10:49:56.059747Z",
+			"updated_at": "2023-09-22T10:49:56.059747Z"
+		},
 		"comment": {
-							"id": 4,
-							"body": "Comment 2",
-							"creator": "John Doe",
-							"event": 4
-						}
+			"id": 4,
+			"body": "Comment 2",
+			"creator": "John Doe",
+			"event": 4
+		}
 	}
 ```
 
@@ -1438,17 +1560,17 @@ Example Response:
 }
 ```
 
-### Update an Image
+### Update a User Group
 
-Update the details of an existing image by its ID.
+Update the details of an existing user group by its ID.
 
 ```
-PUT /api/images/{image_id}/
+PUT /api/usergroups/{usergroup_id}/
 
 Request Body:
 	{
-		"id": "3",
-		"url": "<https://example.com/updated-image.jpg>"
+		"user": "Robert Johnson",
+		"group": "Updated Group"
 	}
 
 ```
@@ -1456,22 +1578,23 @@ Request Body:
 Example Response:
 
 ```json
-	{
-		"id": "3",
-		"url": "<https://example.com/updated-image.jpg>"
-	}
+{
+	"id": 4,
+	"user": "Robert Johnson",
+	"group": "Updated Group"
+}
 
 ```
 
-### Delete an Image
+### Delete a User Group
 
 Delete an existing image by its ID.
 
 ```
-DELETE /api/images/{image_id}/
+DELETE /api/usergroups/{usergroup_id}/
 
 ```
 
 No response body is returned for this request.
 
-These examples demonstrate the basic usage of the WetinDeySup API for retrieving, creating, updating, and deleting images.
+These examples demonstrate the basic usage of the WetinDeySup API for retrieving, creating, updating, and deleting user groups.
