@@ -30,9 +30,8 @@ SECRET_KEY = "django-insecure-3@vw#v!$vetc3ybl2^004s%h5113rrbcd(@in_tt1)+&qv14*p
 IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if not IS_HEROKU_APP:
-#     DEBUG = True
-DEBUG = True
+if not IS_HEROKU_APP:
+    DEBUG = True
 
 # On Heroku, it's safe to use a wildcard for `ALLOWED_HOSTS``, since the Heroku router performs
 # validation of the Host header in the incoming HTTP request. On other platforms you may need
@@ -109,13 +108,14 @@ if IS_HEROKU_APP:
     # automatically by Heroku when a database addon is attached to your Heroku app. See:
     # https://devcenter.heroku.com/articles/provisioning-heroku-postgres
     # https://github.com/jazzband/dj-database-url
-    DATABASES = {
-        "default": dj_database_url.config(
-            conn_max_age=600,
-            conn_health_checks=True,
-            ssl_require=True,
-        ),
-    }
+    # DATABASES = {
+    #     "default": dj_database_url.config(
+    #         conn_max_age=600,
+    #         conn_health_checks=True,
+    #         ssl_require=True,
+    #     ),
+    # }
+    pass
 else:
     # When running locally in development or in CI, a sqlite database file will be used instead
     # to simplify initial setup. Longer term it's recommended to use Postgres locally too.
@@ -126,6 +126,7 @@ else:
         }
     }
 
+AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
