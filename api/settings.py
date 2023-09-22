@@ -112,15 +112,14 @@ if IS_HEROKU_APP:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-        'USER': os.environ.get('DB_USER'),
+        'NAME': 'event-app-api',
+        'HOST': '3306',
+        'PORT': 'pscale_pw_XgDGyCuyYLXlBOQ0NwBvloGxR3cRj2CI3eeB4lBDNPx',
+        'USER': 'ipdeooaobr2iqkw12srl',
         'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
+        'OPTIONS': {'ssl': {'ca': '/etc/ssl/certs/ca-certificates.crt'}}
     }
 }
-
 
 else:
     # When running locally in development or in CI, a sqlite database file will be used instead
