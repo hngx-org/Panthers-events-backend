@@ -113,10 +113,10 @@ if IS_HEROKU_APP:
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'event-app-api',
-        'HOST': '3306',
-        'PORT': 'pscale_pw_XgDGyCuyYLXlBOQ0NwBvloGxR3cRj2CI3eeB4lBDNPx',
+        'HOST': 'aws.connect.psdb.cloud',
+        'PORT': '3306',
         'USER': 'ipdeooaobr2iqkw12srl',
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'PASSWORD': 'pscale_pw_XgDGyCuyYLXlBOQ0NwBvloGxR3cRj2CI3eeB4lBDNPx',
         'OPTIONS': {'ssl': {'ca': '/etc/ssl/certs/ca-certificates.crt'}}
     }
 }
