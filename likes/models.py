@@ -8,5 +8,5 @@ class Like(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return f'{user.name} liked comment#{comment.id}'
+        return f"Like by User{self.user.id} on Comment {self.comment.id}"
     
