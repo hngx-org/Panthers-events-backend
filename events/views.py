@@ -1,4 +1,4 @@
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveAPIView, DestroyAPIView
 from events.models import Event, Comment
 from events.serializers import EventSerializer, ExpressInterestSerializer, CommentSerializer
 from users.models import User
@@ -10,12 +10,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 
 
-class EventListAPIView(ListAPIView):
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-
-
-class CreateEventAPIView(CreateAPIView):
+class EventListCreateAPIView(ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
@@ -95,7 +90,6 @@ class ExpressInterestView(CreateAPIView):
 
         return Response({"message": "Interest expressed successfully"}, status=status.HTTP_201_CREATED)
 
-
 class DeleteExpressInterestView(DestroyAPIView):
     serializer_class = EventSerializer
 
@@ -117,7 +111,6 @@ class DeleteExpressInterestView(DestroyAPIView):
         user.interested_events.delete(event)
 
         return Response(data={"message": "Interest deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
-
 
 # ADDING IMAGE TO A COMMENT(POST)
 class CreateImage(viewsets.ModelViewSet):

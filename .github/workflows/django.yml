@@ -3,7 +3,7 @@ name: Event App API Github Action Workflow
 on:
   push:
     branches:
-      - main
+      - development
     paths:
       - 'backend/*'
   pull_request:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       max-parallel: 2
       matrix:
@@ -33,13 +33,14 @@ jobs:
       #     flake8 .
       - name: Run migrations
         run: |
+          python manage.py makemigrations
           python manage.py migrate
       # - name: Runing the tests
       #   run: |
       #     python manage.py test
   
   deploy:
-      runs-on: ubuntu-latest
+      runs-on: self-hosted
       name: deploy our django application to heroku
       needs: [build]
       steps:
@@ -52,4 +53,5 @@ jobs:
               heroku_api_key: ${{secrets.HEROKU_API_KEY}}
               heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
               heroku_email: "johndbizz@gmail.com"
-              branch: "main"
+              branch: "development"
+              dontuseforce: 1
