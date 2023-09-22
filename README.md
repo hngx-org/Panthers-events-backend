@@ -69,13 +69,6 @@ The API should now be running locally at [http://localhost:8000/](http://localho
 
 ## Usage Instructions
 
-### Authentication
-
-To access most endpoints of the API, you need to authenticate. Use the Token-based authentication method by making a POST request to `/api/token/` with your username and password.
-
-#### User Authentication:
-
-- /api/token/: Obtain an authentication token.
 
 #### Event Management:
 
@@ -101,9 +94,10 @@ To access most endpoints of the API, you need to authenticate. Use the Token-bas
 - /api/usergroups/{event_id}/: Retrieve, update, or delete a specific event.
 - /api/usergroups/{event_id}/attendees/: Manage event attendees.
 
+
 ## Getting Started
 
-To get started with the project, refer to the [Installation Instructions](#installation-instructions) and [Usage Instructions](#usage-instructions) sections. Familiarize yourself with the API endpoints by exploring the [API Documentation](http://127.0.0.1:8000/redoc/) provided.
+To get started with the project, refer to the [Installation Instructions](#installation-instructions) and [Usage Instructions](#usage-instructions) sections. Familiarize yourself with the API endpoints by exploring the [API Documentation](documentation.md) provided.
 
 ## Configuration
 
@@ -136,10 +130,10 @@ This project is open-source and is licensed under the [MIT License](LICENSE). Fo
 ## Contributors
 
 We acknowledge and appreciate the contributions of the following individuals to this project:
+- [Contributors](CONTRIBUTORS.md)
 
-- [denscholar](mailto:d.akagha20@gmail.com) - GitHub Profile: [here](https://github.com/denscholar)
 
-## Project Roadmap (Optional)
+## Project Roadmap
 
 Our project roadmap outlines future plans and enhancements for the project. It serves as a guide for potential contributors and collaborators. You can find the roadmap in the [ROADMAP.md](ROADMAP.md) file.
 
