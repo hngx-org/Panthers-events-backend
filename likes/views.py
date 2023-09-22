@@ -31,7 +31,7 @@ class LikeDetail(generics.ListCreateAPIView):
 
 
 # creating a likes on comment
-class LikeComment(viewsets.ModelViewset):
+class LikeComment(viewsets.ModelViewSet):
     queryset = Like.objects.all()
     serializer = LikeSerializer
     
