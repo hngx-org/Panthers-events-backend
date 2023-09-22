@@ -622,6 +622,126 @@ The API will respond with a JSON object containing the following fields:
 
 The following examples demonstrate the usage of the WetinDeySup API.
 
+## User
+
+### Get All Users
+
+Retrieve all users from the API.
+
+```
+GET /api/user/
+
+```
+
+Example Response:
+
+```json
+[
+	{
+		"id": 1,
+		"name": "John Doe",
+		"email": "john@mail.com",
+		"avatar": "https://example.com/avatar.jpg",
+		"created_at": "2023-09-22T08:54:32.156734Z",
+		"updated_at": "2023-09-22T08:54:32.156776Z"
+	},
+	{
+		"id": 2,
+		"name": "James Smith",
+		"email": "james@mail.com",
+		"avatar": "https://example.com/avatar-2.jpg",
+		"created_at": "2023-09-22T10:48:21.929635Z",
+		"updated_at": "2023-09-22T10:48:21.929667Z"
+	},
+  ...
+]
+
+```
+
+### Get User Details
+
+Retrieve details of a specific user by its ID.
+
+```
+GET /api/user/{user_id}/
+
+```
+
+Example Response:
+
+```json
+{
+	"id": 2,
+	"name": "James Smith",
+	"email": "james@mail.com",
+	"avatar": "https://example.com/avatar-2.jpg",
+	"created_at": "2023-09-22T10:48:21.929635Z",
+	"updated_at": "2023-09-22T10:48:21.929667Z"
+}
+
+```
+
+### Create a User
+
+Create a new user by providing the required parameters.
+
+```
+POST /api/events/
+
+Request Body:
+	{
+		"name": "New User",
+		"email": "newuser@mail.com",
+		"avatar": "https://example.com/avatar-3.jpg",
+	}
+
+```
+
+Example Response:
+
+```json
+{
+	"id": 3,
+	"name": "New User",
+	"email": "newuser@mail.com",
+	"avatar": "https://example.com/avatar-3.jpg",
+	"created_at": "2023-09-23T10:48:21.929635Z",
+	"updated_at": "2023-09-23T10:48:21.929635Z"
+}
+
+```
+
+### Update a User
+
+Update the details of an existing user by its ID.
+
+```
+PUT /api/user/{user_id}/
+
+Request Body:
+	{
+		"name": "Updated User",
+		"email": "updateduser@mail.com",
+		"avatar": "https://example.com/avatar-3.jpg",
+	}
+
+```
+
+Example Response:
+
+```json
+{
+	"id": 3,
+	"name": "Updated User",
+	"email": "updateduser@mail.com",
+	"avatar": "https://example.com/avatar-3.jpg",
+	"created_at": "2023-09-23T10:48:21.929635Z",
+	"updated_at": "2023-09-23T10:48:21.929667Z"
+}
+
+```
+
+
 ## Events
 
 ### Get All Events
