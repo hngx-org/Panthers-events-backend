@@ -17,7 +17,7 @@ class CommentLikes(generics.ListCreateAPIView):
 
     def get_queryset(self):
         comment_id = self.kwargs['comment_id']
-        return self.queryset.filter(comment.id = comment_id)
+        return self.queryset.filter(comment.id == comment_id)
     
 class LikeList(generics.ListCreateAPIView):
     queryset = Like.objects.all()
