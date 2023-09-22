@@ -10,11 +10,12 @@ from .serializers import (
     UserGroupsSerializer,
     GroupEventsSerializer,
     GroupImageSerializer,
+    
 )
 
 class ModelTestCase(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="testpassword")
+        self.user = User.objects.create(username="testuser", password="testpassword")
         self.image = Image.objects.create(id="1", url="http://example.com/image.jpg")
         self.group = Group.objects.create(id="1", title="Test Group")
         self.event = Event.objects.create(id="1", title="Test Event")  # Import Event model if needed
