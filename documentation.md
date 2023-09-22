@@ -1,6 +1,6 @@
 # WetinDeySup API Documentation
 
-- Required Parameter
+- *Required Parameter
 
 ## Table of Content
 
@@ -57,9 +57,9 @@ Create a user.
 
 ### Parameters
 
-```
+
   **body**
-```
+
 
 - `name*` (string): The name of the user
 - `email*`(string): Email of the user
@@ -83,9 +83,9 @@ Get all users.
 
 ### Parameters
 
-```
+
  None
-```
+
 
 ### Response
 
@@ -105,9 +105,9 @@ Get a user by id.
 
 ### Parameters
 
-```
+
  **path**
-```
+
 
 - `id*` : A unique value identifying this user.
 
@@ -129,9 +129,9 @@ Update a user by id.
 
 ### Parameters
 
-```
+
  **path**
-```
+
 
 - `id*` : A unique value identifying this user.
 
@@ -155,9 +155,9 @@ Create an event.
 
 ### Parameters
 
-```
+
    **body**
-```
+
 
 - **`title` ***(string): The title of the event.
 - **`description`** (string): A brief description of the event.
@@ -246,10 +246,7 @@ Create a group.
 
 ### Parameters
 
-```
    **body**
-```
-
 - `title*` : A unique identifying the group
 - `ceator_id*` : A unique identifier for the creator
 
@@ -270,9 +267,7 @@ Get all group.
 
 ### Parameters
 
-```
   None
-```
 
 ### Response
 
@@ -291,10 +286,7 @@ Get a group by id.
 
 ### Parameters
 
-```
    **path**
-```
-
 - `id*` (string): A unique value identifying this group.
 
 ### Response
@@ -314,10 +306,7 @@ Update a group by id.
 
 ### Parameters
 
-```
    **path**
-```
-
 - `id*` (string): A unique value identifying this group.
     
     **body**
@@ -335,10 +324,7 @@ Delete a group by id.
 
 ### Parameters
 
-```
   **Path**
-```
-
 - `id*` (string): A unique value identifying this group.
 
 ### Response
@@ -368,9 +354,7 @@ Add a group image.
 
 ### Parameters
 
-```
    **body**
-```
 
 - `group*` : A unique identifying the group
 - `image*` (file): Group image file
@@ -391,9 +375,7 @@ Get a group image.
 
 ### Parameters
 
-```
    **Path**
-```
 
 - `id` *: A unique integer value identifying this group image.
 
@@ -413,10 +395,7 @@ Update a group image.
 
 ### Parameters
 
-```
   **Path**
-```
-
 - `id` *: A unique integer value identifying this group image.
     
     **body**
@@ -442,10 +421,7 @@ Delete a group image.
 
 ### Parameters
 
-```
   **Path**
-```
-
 - `id*` : A unique integer value identifying this group image.
 
 ### Response
@@ -462,10 +438,7 @@ Create a group event.
 
 ### Parameters
 
-```
    **body**
-```
-
 - `event*` (integer): A unique value identifying the event
 - `group*` (string): A unique value identifying the group
 
@@ -505,9 +478,7 @@ Get a group event by id.
 
 ### Parameters
 
-```
    path
-```
 
 - `id*` (integer): A unique value identifying this group events
 
@@ -527,9 +498,7 @@ Update a group event by id.
 
 ### Parameters
 
-```
    **path**
-```
 
 - `id*` (integer): A unique value identifying this group events
     
@@ -556,9 +525,7 @@ Delete a group event by id.
 
 ### Parameters
 
-```
    **path**
-```
 
 - `id*` (integer): A unique value identifying this group events
 
@@ -580,10 +547,7 @@ Like a comment.
 
 ### Parameters
 
-```
  **body**
-```
-
 - `comment*`(string): The id of the comment
 
 ### Response

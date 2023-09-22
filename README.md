@@ -103,25 +103,13 @@ To get started with the project, refer to the [Installation Instructions](#insta
 
 Configuration details can be found in the project's `settings.py` file. Make sure to configure the required environment variables or configuration files as needed. Additionally, if any API keys or secrets are required, they should be mentioned in this section.
 
-## Contributing Guidelines
-
-We welcome contributions from the community. Please follow our [Contributing Guidelines](#contributing-guidelines) for information on how to contribute to the project. You can submit bug reports, feature requests, or pull requests following the outlined process.
-
 ## Coding Standards
 
 The project follows specific coding standards outlined in our [Coding Style Guide](#coding-standards). We use linting and code formatting tools to maintain code quality.
 
-## Testing and Quality Assurance
-
-To ensure code quality, follow the instructions in the [Testing Guidelines](#testing-and-quality-assurance) for running tests and quality checks on the codebase. The project uses a testing framework, and details on the testing tools are provided.
-
-## Deployment Instructions (if applicable)
-
-For deployment to a production environment, please refer to our [Deployment Instructions](#deployment-instructions-if-applicable). This document includes step-by-step instructions and configuration details for deploying the project.
-
 ## API Documentation (if applicable)
 
-You can access the API documentation [here](http://127.0.0.1:8000/redoc/) when the server is running. It provides comprehensive information on how to use the API endpoints.
+You can access the API documentation [here](https://event-app-api-86dbc6d461d3.herokuapp.com/) when the server is running. It provides comprehensive information on how to use the API endpoints.
 
 ## License Information
 
@@ -130,11 +118,7 @@ This project is open-source and is licensed under the [MIT License](LICENSE). Fo
 ## Contributors
 
 We acknowledge and appreciate the contributions of the following individuals to this project:
-- [Contributors](CONTRIBUTORS.md)
 
-
-## Project Roadmap
-
-Our project roadmap outlines future plans and enhancements for the project. It serves as a guide for potential contributors and collaborators. You can find the roadmap in the [ROADMAP.md](ROADMAP.md) file.
+- View the list of contributors in [Contributors.md](CONTRIBUTORS.md)
 
 &copy; 2023 Team Panther Backend - HNG
