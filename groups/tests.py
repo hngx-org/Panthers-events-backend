@@ -53,6 +53,35 @@ class ImageTests(TestCase):
         self.assertFalse(Image.objects.filter(pk=self.image.id).exists())
 
 class GroupTests(TestCase):
+        self.user = User.objects.create(username="testuser", password="testpassword")
+        self.image = Image.objects.create(id="1", url="http://example.com/image.jpg")
+        self.group = Group.objects.create(id="1", title="Test Group")
+        self.event = Event.objects.create(id="1", title="Test Event")  # Import Event model if needed
+
+    def test_image_model(self):
+        image = Image.objects.get(id="1")
+        self.assertEqual(image.url, "http://example.com/image.jpg")
+
+    def test_group_model(self):
+        group = Group.objects.get(id="1")
+        self.assertEqual(group.title, "Test Group")
+
+    def test_usergroups_model(self):
+        usergroup = UserGroups.objects.create(user=self.user, group=self.group)
+        self.assertEqual(usergroup.user, self.user)
+        self.assertEqual(usergroup.group, self.group)
+
+    def test_groupevents_model(self):
+        groupevent = GroupEvents.objects.create(event=self.event, group=self.group)
+        self.assertEqual(groupevent.event, self.event)
+        self.assertEqual(groupevent.group, self.group)
+
+    def test_groupimage_model(self):
+        groupimage = GroupImage.objects.create(group=self.group, image=self.image)
+        self.assertEqual(groupimage.group, self.group)
+        self.assertEqual(groupimage.image, self.image)
+
+class ViewTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = User.objects.create(username='testuser', password='testpassword')
