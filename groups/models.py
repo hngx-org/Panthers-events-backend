@@ -1,10 +1,11 @@
 from django.db import models
 from users.models import Users
-from events.models import Events, Images, generateUUID
+from events.models import Events, Images
+import uuid
 
 
 class Groups(models.Model):
-    id = models.CharField(primary_key=True, max_length=255, default=generateUUID())
+    id = models.CharField(primary_key=True, max_length=255, default=str(uuid.uuid4()))
     title = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
