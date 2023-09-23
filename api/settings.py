@@ -108,8 +108,7 @@ DATABASES = {
             'HOST': os.environ.get('DB_HOST_TWO'),
             'PORT': os.environ.get('DB_PORT'),
             'USER': os.environ.get('DB_USER_TWO'),
-            'PASSWORD': os.environ.get('DB_PASSWORD_TWO'),
-            'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
+            'PASSWORD': os.environ.get('DB_PASSWORD_TWO')
         },
         "default": {
             'ENGINE': 'django.db.backends.mysql',
