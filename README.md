@@ -109,7 +109,7 @@ The project follows specific coding standards outlined in our [Coding Style Guid
 
 ## API Documentation (if applicable)
 
-You can access the API documentation [here](https://event-app-api-86dbc6d461d3.herokuapp.com/) when the server is running. It provides comprehensive information on how to use the API endpoints.
+You can access the API documentation [here](https://octopus-app-nax2o.ondigitalocean.app/) when the server is running. It provides comprehensive information on how to use the API endpoints.
 
 ## License Information
 
