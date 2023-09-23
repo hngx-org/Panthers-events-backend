@@ -10,7 +10,7 @@ class Image(models.Model):
     class meta:
         db_table = 'images'
 
-
+  
 class Group(models.Model):
     id = models.CharField(max_length=255, primary_key=True, editable=False, default=generateUUID)
     title = models.CharField(max_length=225)
@@ -20,9 +20,10 @@ class Group(models.Model):
     
     def __str__(self):
         return self.title
-    
+ 
     class meta:
         db_table = 'groups'
+
 
 class UserGroups(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_column='user_id')
@@ -30,9 +31,10 @@ class UserGroups(models.Model):
 
     def __str__(self):
         return f"User ID: {self.user}, Group ID: {self.group}"
-    
+
     class Meta:
         db_table = 'user_groups'
+
 
 class GroupEvents(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, db_column='event_id')
@@ -40,9 +42,10 @@ class GroupEvents(models.Model):
 
     def __str__(self):
         return f"Event ID: {self.event}, Group ID: {self.group}"
-    
+ 
     class Meta:
         db_table = 'group_events'
+
 
 class GroupImage(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE, db_column='group_id')
@@ -53,3 +56,4 @@ class GroupImage(models.Model):
 
     class Meta:
         db_table = 'group_images'
+
