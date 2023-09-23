@@ -25,6 +25,7 @@ class RetrieveEventAPIView(RetrieveAPIView):
     authentication_classes = [AuthenticationMiddleware]
     queryset = Events.objects.all()
     serializer_class = EventSerializer
+    lookup_field = 'pk'
 
 
 class EventThumbnailViewSet(viewsets.ModelViewSet):
@@ -39,12 +40,12 @@ class InterestedEventsViewSet(viewsets.ModelViewSet):
 
 
 # Verify the event object from the Event model
-def get_event_object(eventId):
-    if not isinstance(eventId, int):
-        return Response({"error": "Event ID must be an integer format."}, status=status.HTTP_400_BAD_REQUEST)
-    else:
-        event = get_object_or_404(Events, id=eventId)
-        return event
+# def get_event_object(eventId):
+#     if not isinstance(eventId, int):
+#         return Response({"error": "Event ID must be an integer format."}, status=status.HTTP_400_BAD_REQUEST)
+#     else:
+#         event = get_object_or_404(Events, id=eventId)
+#         return event
 
 
 class PutDeleteEventDetail(APIView):
@@ -52,7 +53,8 @@ class PutDeleteEventDetail(APIView):
     permission_classes = [IsAuthenticatedUser]
     """Update or Delete an event detail."""
     def put(self, request, eventId):
-        event = get_event_object(eventId=eventId)
+        # event = get_event_object(eventId=eventId)
+        event = eventId
 
         # Ensure only the event creator can UPDATE the event details
         if request.user == event.creator:
@@ -66,7 +68,8 @@ class PutDeleteEventDetail(APIView):
                             status=status.HTTP_403_FORBIDDEN)
 
     def delete(self, request, eventId):
-        event = get_event_object(eventId=eventId)
+        # event = get_event_object(eventId=eventId)
+        event = eventId
         # Ensure only the event creator can DELETE the event
         if request.user == event.creator:
             event.delete()
@@ -80,7 +83,8 @@ class PostEventComment(APIView):
     authentication_classes = [AuthenticationMiddleware]
     """Create a comment for an event."""
     def post(self, request, eventId):
-        event = get_event_object(eventId=eventId)
+        # event = get_event_object(eventId=eventId)
+        event = eventId
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(event=event, creator=request.user)

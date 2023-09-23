@@ -6,7 +6,7 @@ def generateUUID():
     return str(uuid.uuid4())
 
 class Events(models.Model):
-    id = models.CharField(primary_key=True, max_length=255, default=generateUUID)
+    id = models.CharField(primary_key=True, max_length=255, default=generateUUID())
     title = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     location = models.TextField(blank=True, null=True)
@@ -24,7 +24,7 @@ class Events(models.Model):
 
 
 class Images(models.Model):
-    id = models.CharField(primary_key=True, max_length=255)
+    id = models.CharField(primary_key=True, max_length=255, default=generateUUID)
     url = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
