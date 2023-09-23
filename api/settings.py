@@ -104,20 +104,20 @@ DATABASE_ROUTERS = ['api.db_routers.DefaultDBRouter', 'api.db_routers.SharedDBRo
 DATABASES = {
         'shared_db': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'test_db',
-            'HOST': 'ls-748579094099b0766a964caacd8cc4a4b73ec231.czwhjvdkncwk.us-east-2.rds.amazonaws.com',
-            'PORT': 3306,
-            'USER': 'team',
-            'PASSWORD': 'event_team',
+            'NAME': os.environ.get('DB_NAME_TWO'),
+            'HOST': os.environ.get('DB_HOST_TWO'),
+            'PORT': os.environ.get('DB_PORT'),
+            'USER': os.environ.get('DB_USER_TWO'),
+            'PASSWORD': os.environ.get('DB_PASSWORD_TWO'),
             'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
         },
         "default": {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'event-app-api',
-            'HOST': 'aws.connect.psdb.cloud',
-            'PORT': 3306,
-            'USER': 'qosgvahpghgf9ux34r6h',
-            'PASSWORD': 'pscale_pw_HT8AQFAeg2fJXtBy87HqbBVW4NoXdrLIOMjSMGVa8vw',
+            'NAME': os.environ.get('DB_NAME'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
             'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
         }
 }
@@ -169,7 +169,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTHLIB_OAUTH_CLIENTS = {
     'google': {
-        'client_id': "822209448632-p96kk21qqqu4f00t7aloj7jrmlr0tg6q.apps.googleusercontent.com",
-        'client_secret': "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",
+        'client_id': os.environ.get('CLIENT_ID'),
+        'client_secret': os.environ.get('CLIENT_SECRET'),
     }
 }
