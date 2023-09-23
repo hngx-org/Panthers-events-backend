@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+#from groups.models import Image
 import uuid
 
 def generateUUID():
@@ -8,8 +9,8 @@ class Event(models.Model):
     id = models.CharField(max_length=255, primary_key=True, editable=False, default=generateUUID)
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    creator_id = models.ForeignKey(User, on_delete = models.CASCADE)
     location = models.TextField()
+    creator_id = models.ForeignKey(User, on_delete = models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
     start_time = models.TimeField()
@@ -19,12 +20,21 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Even_Thumbnail(models.Model):
+    #image_id = models.ForeignKey(Image, on_delete=models.CASCADE)
+    event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+
+class Interested_Events(models.Model):
+    event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Comment(models.Model):
     id = models.CharField(max_length=255, primary_key=True, editable=False, default=generateUUID)
     body = models.TextField()
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     
