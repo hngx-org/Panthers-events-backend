@@ -4,19 +4,29 @@ from events.models import Event, generateUUID
 
 
 class Image(models.Model):
-    id = models.CharField(max_length=255, primary_key=True, editable=False, default=generateUUID)
-    url = models.TextField()
+    id = models.CharField(max_length=255,
+                          primary_key=True,
+                          editable=False,
+                          default=generateUUID,
+                          db_column='id')
+    url = models.TextField(db_column='url')
+    created_at = models.DateTimeField(auto_now_add=True, db_column='created_at')
+    updated_at = models.DateTimeField(auto_now=True, db_column='updated_at')
 
     class meta:
         db_table = 'images'
 
   
 class Group(models.Model):
-    id = models.CharField(max_length=255, primary_key=True, editable=False, default=generateUUID)
+    id = models.CharField(max_length=255,
+                          primary_key=True,
+                          editable=False,
+                          default=generateUUID,
+                          db_column='id')
     title = models.CharField(max_length=225)
-    creator_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    creator_id = models.ForeignKey(User, on_delete=models.CASCADE, db_column='creator_id')
+    created_at = models.DateTimeField(auto_now_add=True, db_column='created_at')
+    updated_at = models.DateTimeField(auto_now=True, db_column='updated_at')
     
     def __str__(self):
         return self.title
