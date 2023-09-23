@@ -62,3 +62,4 @@ class GroupImage(models.Model):
         managed = False
         db_table = 'group_images'
         unique_together = (('group', 'image'),)
+

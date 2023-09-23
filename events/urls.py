@@ -1,16 +1,25 @@
 from django.urls import path
 from . import views
 from . views import CreateImage, ListImage
+from rest_framework.routers import DefaultRouter
+
+
+
+router = DefaultRouter()
+router.register('event-thumbnail', views.EventThumbnailViewSet)
+router.register('interested-events', views.InterestedEventsViewSet)
 
 
 urlpatterns = [
-    path('api/events/', views.EventListAPIView.as_view(), name='event-list'),
-    path('api/events/', views.CreateEventAPIView.as_view(), name='event-create'),
+    path('events/', views.EventListCreateAPIView.as_view(), name='event-list-create'),
+    path('events/<str:pk>/', views.RetrieveEventAPIView.as_view(), name='event-retrieve'),
+    path('events/<str:eventId>/comments', views.PostEventComment.as_view(), name='event_comment'),
+    path('events/<str:eventId>/', views.PutDeleteEventDetail.as_view(), name='event_comment'),
 
-    path('api/events/<int:pk>/', views.RetrieveEventAPIView.as_view(), name='event-retrieve'),
-
-    path('api/users/<int:userId>/interests/<int:eventId>/', views.ExpressInterestView.as_view(),
+    path('users/<str:userId>/interests/<str:eventId>/', views.ExpressInterestView.as_view(),
          name='express-interest'),
-    path('api/comments/<int:commentId>/images/', CreateImage.as_view({'post': 'create'}), name='add-comment-image'),
-    path('api/comments/<int:commentId>/images/list/', ListImage.as_view({'get': 'list'}), name='list-comment-images')
-]
+    path('users/<str:userId>/interests/<str:eventId>/',views.DeleteExpressInterestView.as_view(),name='delete-express-interest'),     
+
+    path('comments/<str:commentId>/images/', CreateImage.as_view({'post': 'create'}), name='add-comment-image'),
+    path('comments/<str:commentId>/images/list/', ListImage.as_view({'get': 'list'}), name='list-comment-images')
+] + router.urls

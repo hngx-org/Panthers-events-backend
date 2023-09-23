@@ -10,7 +10,8 @@ from .views import (
 
 router = DefaultRouter()
 router.register(r'images', ImageViewSet)
-router.register(r'groups', GroupViewSet)
+router.register(r'groups', GroupViewSet, basename='groups')
+# router.register(r'groups/<str:id>', GroupViewSet)
 router.register(r'usergroups', UserGroupsViewSet)
 router.register(r'groupevents', GroupEventsViewSet)
 router.register(r'groupimages', GroupImageViewSet)
