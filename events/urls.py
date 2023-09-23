@@ -6,8 +6,8 @@ from . views import CreateImage, ListImage
 urlpatterns = [
     path('events/', views.EventListCreateAPIView.as_view(), name='event-list-create'),
     path('events/<str:pk>/', views.RetrieveEventAPIView.as_view(), name='event-retrieve'),
-    path('events/<int:eventId>/comments', views.PostEventComment.as_view(), name='event_comment'),
-    path('events/<int:eventId>/', views.PutDeleteEventDetail.as_view(), name='event_comment'),
+    path('events/<str:eventId>/comments', views.PostEventComment.as_view(), name='event_comment'),
+    path('events/<str:eventId>/', views.PutDeleteEventDetail.as_view(), name='event_comment'),
 
     path('users/<str:userId>/interests/<str:eventId>/', views.ExpressInterestView.as_view(),
          name='express-interest'),
