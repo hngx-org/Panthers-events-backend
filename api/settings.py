@@ -110,16 +110,17 @@ if IS_HEROKU_APP:
     # https://github.com/jazzband/dj-database-url
     
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'event-app-api',
-        'HOST': 'aws.connect.psdb.cloud',
-        'PORT': '3306',
-        'USER': 'ipdeooaobr2iqkw12srl',
-        'PASSWORD': 'pscale_pw_XgDGyCuyYLXlBOQ0NwBvloGxR3cRj2CI3eeB4lBDNPx',
-        'OPTIONS': {'ssl': {'ca': '/etc/ssl/certs/ca-certificates.crt'}}
-    }
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('DB_NAME'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
+        }
 }
+
 
 else:
     # When running locally in development or in CI, a sqlite database file will be used instead
