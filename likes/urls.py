@@ -7,9 +7,17 @@ from .views import LikeComment, DeleteLike
 """
 
 urlpatterns = [
-    path('likes/', LikeList.as_view(), name='likes'),
-    path('likes/<int:comment_id>/', CommentLikes.as_view(), name='comment-likes'),
-    path('likes/<int:pk>', LikeDetail.as_view(), name='likes-detail'),
-    path('api/comments/<int:commentId>/likes/<int:userId>/', LikeComment.as_view({'post': 'create'}), name='comment-like-create'),
-    path('api/comments/<int:commentId>/likes/<int:userId>/', DeleteLike.as_view({'delete': 'destroy'}), name='comment-like-delete')
+    path("likes/", LikeList.as_view(), name="likes"),
+    path("likes/<str:comment_id>/", CommentLikes.as_view(), name="comment-likes"),
+    path("likes/<str:pk>", LikeDetail.as_view(), name="likes-detail"),
+    path(
+        "api/comments/<str:commentId>/likes/<str:userId>/",
+        LikeComment.as_view({"post": "create"}),
+        name="comment-like-create",
+    ),
+    path(
+        "api/comments/<str:commentId>/likes/<str:userId>/",
+        DeleteLike.as_view({"delete": "destroy"}),
+        name="comment-like-delete",
+    ),
 ]
