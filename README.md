@@ -69,13 +69,6 @@ The API should now be running locally at [http://localhost:8000/](http://localho
 
 ## Usage Instructions
 
-### Authentication
-
-To access most endpoints of the API, you need to authenticate. Use the Token-based authentication method by making a POST request to `/api/token/` with your username and password.
-
-#### User Authentication:
-
-- /api/token/: Obtain an authentication token.
 
 #### Event Management:
 
@@ -101,33 +94,22 @@ To access most endpoints of the API, you need to authenticate. Use the Token-bas
 - /api/usergroups/{event_id}/: Retrieve, update, or delete a specific event.
 - /api/usergroups/{event_id}/attendees/: Manage event attendees.
 
+
 ## Getting Started
 
-To get started with the project, refer to the [Installation Instructions](#installation-instructions) and [Usage Instructions](#usage-instructions) sections. Familiarize yourself with the API endpoints by exploring the [API Documentation](http://127.0.0.1:8000/redoc/) provided.
+To get started with the project, refer to the [Installation Instructions](#installation-instructions) and [Usage Instructions](#usage-instructions) sections. Familiarize yourself with the API endpoints by exploring the [API Documentation](documentation.md) provided.
 
 ## Configuration
 
 Configuration details can be found in the project's `settings.py` file. Make sure to configure the required environment variables or configuration files as needed. Additionally, if any API keys or secrets are required, they should be mentioned in this section.
 
-## Contributing Guidelines
-
-We welcome contributions from the community. Please follow our [Contributing Guidelines](#contributing-guidelines) for information on how to contribute to the project. You can submit bug reports, feature requests, or pull requests following the outlined process.
-
 ## Coding Standards
 
 The project follows specific coding standards outlined in our [Coding Style Guide](#coding-standards). We use linting and code formatting tools to maintain code quality.
 
-## Testing and Quality Assurance
-
-To ensure code quality, follow the instructions in the [Testing Guidelines](#testing-and-quality-assurance) for running tests and quality checks on the codebase. The project uses a testing framework, and details on the testing tools are provided.
-
-## Deployment Instructions (if applicable)
-
-For deployment to a production environment, please refer to our [Deployment Instructions](#deployment-instructions-if-applicable). This document includes step-by-step instructions and configuration details for deploying the project.
-
 ## API Documentation (if applicable)
 
-You can access the API documentation [here](http://127.0.0.1:8000/redoc/) when the server is running. It provides comprehensive information on how to use the API endpoints.
+You can access the API documentation [here](https://octopus-app-nax2o.ondigitalocean.app/) when the server is running. It provides comprehensive information on how to use the API endpoints.
 
 ## License Information
 
@@ -137,10 +119,6 @@ This project is open-source and is licensed under the [MIT License](LICENSE). Fo
 
 We acknowledge and appreciate the contributions of the following individuals to this project:
 
-- [denscholar](mailto:d.akagha20@gmail.com) - GitHub Profile: [here](https://github.com/denscholar)
-
-## Project Roadmap (Optional)
-
-Our project roadmap outlines future plans and enhancements for the project. It serves as a guide for potential contributors and collaborators. You can find the roadmap in the [ROADMAP.md](ROADMAP.md) file.
+- View the list of contributors in [Contributors.md](CONTRIBUTORS.md)
 
 &copy; 2023 Team Panther Backend - HNG
