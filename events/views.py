@@ -21,6 +21,7 @@ class EventListCreateAPIView(ListCreateAPIView):
 class RetrieveEventAPIView(RetrieveAPIView):
     queryset = Events.objects.all()
     serializer_class = EventSerializer
+    lookup_field = 'pk'
 
 
 class EventThumbnailViewSet(viewsets.ModelViewSet):
@@ -44,7 +45,8 @@ def get_event_object(eventId):
 class PutDeleteEventDetail(APIView):
     """Update or Delete an event detail."""
     def put(self, request, eventId):
-        event = get_event_object(eventId=eventId)
+        # event = get_event_object(eventId=eventId)
+        event = eventId
 
         # Ensure only the event creator can UPDATE the event details
         if request.user == event.creator:
@@ -58,7 +60,8 @@ class PutDeleteEventDetail(APIView):
                             status=status.HTTP_403_FORBIDDEN)
 
     def delete(self, request, eventId):
-        event = get_event_object(eventId=eventId)
+        # event = get_event_object(eventId=eventId)
+        event = eventId
         # Ensure only the event creator can DELETE the event
         if request.user == event.creator:
             event.delete()
@@ -71,7 +74,8 @@ class PutDeleteEventDetail(APIView):
 class PostEventComment(APIView):
     """Create a comment for an event."""
     def post(self, request, eventId):
-        event = get_event_object(eventId=eventId)
+        # event = get_event_object(eventId=eventId)
+        event = eventId
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(event=event, creator=request.user)
