@@ -8,7 +8,7 @@ urlpatterns = [
     path('events/', views.EventListCreateAPIView.as_view(), name='event-list-create'),
     path('events/<str:pk>/', views.RetrieveEventAPIView.as_view(), name='event-retrieve'),
     path('events/<str:eventId>/comments', views.PostEventComment.as_view(), name='event_comment'),
-    path('events/<str:eventId>/', views.PutDeleteEventDetail.as_view(), name='event_comment'),
+    path('events/del/<str:eventId>/', views.PutDeleteEventDetail.as_view(), name='event_comment'),
 
     path('images/', ImageCreate.as_view(), name='images'),
 

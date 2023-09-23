@@ -34,12 +34,12 @@ class InterestedEventsViewSet(viewsets.ModelViewSet):
 
 
 # Verify the event object from the Event model
-def get_event_object(eventId):
-    if not isinstance(eventId, int):
-        return Response({"error": "Event ID must be an integer format."}, status=status.HTTP_400_BAD_REQUEST)
-    else:
-        event = get_object_or_404(Events, id=eventId)
-        return event
+# def get_event_object(eventId):
+#     if not isinstance(eventId, int):
+#         return Response({"error": "Event ID must be an integer format."}, status=status.HTTP_400_BAD_REQUEST)
+#     else:
+#         event = get_object_or_404(Events, id=eventId)
+#         return event
 
 
 class PutDeleteEventDetail(APIView):
