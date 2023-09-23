@@ -23,6 +23,11 @@ class UserGroups(models.Model):
         db_table = 'user_groups'
         unique_together = (('user', 'group'),)
 
+    class Meta:
+        managed = False
+        db_table = 'user_groups'
+        unique_together = (('user', 'group'),)
+
 
 class GroupEvents(models.Model):
     group = models.OneToOneField(Groups, models.CASCADE, primary_key=True)  # The composite primary key (group_id, event_id) found, that is not supported. The first column is selected.

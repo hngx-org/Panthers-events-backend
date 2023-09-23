@@ -17,4 +17,4 @@ urlpatterns = [
 
     path('comments/<str:commentId>/images/', CreateImage.as_view({'post': 'create'}), name='add-comment-image'),
     path('comments/<str:commentId>/images/list/', ListImage.as_view({'get': 'list'}), name='list-comment-images')
-]
+] + router.urls

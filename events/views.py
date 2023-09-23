@@ -23,6 +23,15 @@ class RetrieveEventAPIView(RetrieveAPIView):
     serializer_class = EventSerializer
 
 
+class EventThumbnailViewSet(viewsets.ModelViewSet):
+    queryset = Event_Thumbnail.objects.all()
+    serializer_class = EventThumbnailSerializer
+
+class InterestedEventsViewSet(viewsets.ModelViewSet):
+    queryset = Interested_Events.objects.all()
+    serializer_class = InterestedEventSerializer
+
+
 # Verify the event object from the Event model
 def get_event_object(eventId):
     if not isinstance(eventId, int):

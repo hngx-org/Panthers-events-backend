@@ -9,8 +9,19 @@ class EventSerializer(ModelSerializer):
     class Meta:
         model = Events
         fields = '__all__'
+
+class EventThumbnailSerializer(ModelSerializer):
+    class Meta:
+        model = Event_Thumbnail
+        fields = '__all__'
         
         
+class InterestedEventSerializer(ModelSerializer):
+    class Meta:
+        model = Interested_Events
+        fields = '__all__'
+
+
 class CommentSerializer(ModelSerializer):
     class Meta:
         model = Comments

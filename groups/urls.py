@@ -11,7 +11,7 @@ router.register(r'groups', GroupViewSet, basename='groups')
 # router.register(r'groups/<str:id>', GroupViewSet)
 router.register(r'usergroups', UserGroupsViewSet)
 router.register(r'groupevents', GroupEventsViewSet)
-router.register(r'group-images', GroupImageViewSet)
+router.register(r'groupimages', GroupImageViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
