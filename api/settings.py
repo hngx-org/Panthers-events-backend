@@ -99,78 +99,28 @@ TEMPLATES = [
 WSGI_APPLICATION = "api.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# if IS_HEROKU_APP:
-#     # In production on Heroku the database configuration is derived from the `DATABASE_URL`
-#     # environment variable by the dj-database-url package. `DATABASE_URL` will be set
-#     # automatically by Heroku when a database addon is attached to your Heroku app. See:
-#     # https://devcenter.heroku.com/articles/provisioning-heroku-postgres
-#     # https://github.com/jazzband/dj-database-url
-    
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.mysql',
-#             'NAME': os.environ.get('DB_NAME'),
-#             'HOST': os.environ.get('DB_HOST'),
-#             'PORT': os.environ.get('DB_PORT'),
-#             'USER': os.environ.get('DB_USER'),
-#             'PASSWORD': os.environ.get('DB_PASSWORD'),
-#             'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
-#         }
-# }
-
-
-# else:
-#     # When running locally in development or in CI, a sqlite database file will be used instead
-#     # to simplify initial setup. Longer term it's recommended to use Postgres locally too.
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.sqlite3",
-#             "NAME": BASE_DIR / "db.sqlite3",
-#         }
-#     }
-
 DATABASE_ROUTERS = ['api.db_routers.DefaultDBRouter', 'api.db_routers.SharedDBRouter']
 
 DATABASES = {
         'shared_db': {
-            # 'ENGINE': 'django.db.backends.mysql',
-            # 'NAME': os.environ.get('DB_NAME'),
-            # 'HOST': os.environ.get('DB_HOST'),
-            # 'PORT': os.environ.get('DB_PORT'),
-            # 'USER': os.environ.get('DB_USER'),
-            # 'PASSWORD': os.environ.get('DB_PASSWORD'),
-            # 'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'test_db',
             'HOST': 'ls-748579094099b0766a964caacd8cc4a4b73ec231.czwhjvdkncwk.us-east-2.rds.amazonaws.com',
             'PORT': 3306,
             'USER': 'team',
             'PASSWORD': 'event_team',
-            # 'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
+            'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
         },
-        # "default": {
-        #     'ENGINE': 'django.db.backends.mysql',
-        #     'NAME': 'event-app-api',
-        #     'HOST': 'aws.connect.psdb.cloud',
-        #     'PORT': 3306,
-        #     'USER': 'qosgvahpghgf9ux34r6h',
-        #     'PASSWORD': 'pscale_pw_HT8AQFAeg2fJXtBy87HqbBVW4NoXdrLIOMjSMGVa8vw',
-        #     # 'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
-        # }
-    
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'event-app-api',
+            'HOST': 'aws.connect.psdb.cloud',
+            'PORT': 3306,
+            'USER': 'qosgvahpghgf9ux34r6h',
+            'PASSWORD': 'pscale_pw_HT8AQFAeg2fJXtBy87HqbBVW4NoXdrLIOMjSMGVa8vw',
+            'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
         }
 }
-
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-
-# AUTH_USER_MODEL = 'users.Users'
 
 
 AUTH_PASSWORD_VALIDATORS = [
