@@ -22,3 +22,14 @@ class User(models.Model):
     def is_authenticated(self):
         return True
     
+    class Users(models.Model):
+        id = models.CharField(primary_key=True, max_length=255)
+        name = models.TextField(blank=True, null=True)
+        email = models.TextField(blank=True, null=True)
+        avatar = models.TextField(blank=True, null=True)
+        created_at = models.DateTimeField(blank=True, null=True)
+        updated_at = models.DateTimeField(blank=True, null=True)
+
+        class Meta:
+            managed = False
+            db_table = 'users'
