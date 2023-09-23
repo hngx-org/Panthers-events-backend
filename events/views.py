@@ -7,27 +7,33 @@ from .serializers import ImageSerializer, RealImageSerializer, EventThumbnailSer
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
+from users.authentication import AuthenticationMiddleware,IsAuthenticatedUser
 
 
 class ImageCreate(ListCreateAPIView):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = Images.objects.all()
     serializer_class = RealImageSerializer
 
 class EventListCreateAPIView(ListCreateAPIView):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = Events.objects.all()
     serializer_class = EventSerializer
 
 
 class RetrieveEventAPIView(RetrieveAPIView):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = Events.objects.all()
     serializer_class = EventSerializer
 
 
 class EventThumbnailViewSet(viewsets.ModelViewSet):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = EventThumbnail.objects.all()
     serializer_class = EventThumbnailSerializer
 
 class InterestedEventsViewSet(viewsets.ModelViewSet):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = InterestedEvents.objects.all()
     serializer_class = InterestedEventSerializer
 
@@ -42,6 +48,8 @@ def get_event_object(eventId):
 
 
 class PutDeleteEventDetail(APIView):
+    authentication_classes = [AuthenticationMiddleware]
+    permission_classes = [IsAuthenticatedUser]
     """Update or Delete an event detail."""
     def put(self, request, eventId):
         event = get_event_object(eventId=eventId)
@@ -69,6 +77,7 @@ class PutDeleteEventDetail(APIView):
 
 
 class PostEventComment(APIView):
+    authentication_classes = [AuthenticationMiddleware]
     """Create a comment for an event."""
     def post(self, request, eventId):
         event = get_event_object(eventId=eventId)
@@ -80,6 +89,7 @@ class PostEventComment(APIView):
 
 
 class ExpressInterestView(CreateAPIView):
+    authentication_classes = [AuthenticationMiddleware]
     serializer_class = EventSerializer
 
     def create(self, request, *args, **kwargs):
@@ -103,6 +113,8 @@ class ExpressInterestView(CreateAPIView):
         return Response({"message": "Interest expressed successfully"}, status=status.HTTP_201_CREATED)
 
 class DeleteExpressInterestView(DestroyAPIView):
+    authentication_classes = [AuthenticationMiddleware]
+    permission_classes = [IsAuthenticatedUser]
     serializer_class = EventSerializer
 
     def destroy(self, request, *args, **kwargs):
@@ -126,6 +138,7 @@ class DeleteExpressInterestView(DestroyAPIView):
 
 # ADDING IMAGE TO A COMMENT(POST)
 class CreateImage(viewsets.ModelViewSet):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = CommentImages.objects.all()
     serializer = ImageSerializer
 
@@ -145,6 +158,7 @@ class CreateImage(viewsets.ModelViewSet):
 
 # GETTING IMAGES FOR A COMMENT(GET)
 class ListImage(viewsets.ModelViewSet):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = CommentImages.objects.all()
     serializer = ImageSerializer
 

@@ -3,6 +3,7 @@ from likes.models import Likes
 from events.models import Comments
 from users.models import Users
 from rest_framework import generics, viewsets, status, response
+from users.authentication import AuthenticationMiddleware,IsAuthenticatedUser
 
 
 """
@@ -14,6 +15,7 @@ from rest_framework import generics, viewsets, status, response
 
 
 class CommentLikes(generics.ListCreateAPIView):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = Likes.objects.all()
     serializer_class = LikeSerializer
 
@@ -23,16 +25,19 @@ class CommentLikes(generics.ListCreateAPIView):
         return self.queryset.filter(comment == comment)
     
 class LikeList(generics.ListCreateAPIView):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = Likes.objects.all()
     serializer_class = LikeSerializer
 
 class LikeDetail(generics.ListCreateAPIView):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = Likes.objects.all()
     serializer_class = LikeSerializer
 
 
 # creating a likes on comment
 class LikeComment(viewsets.ModelViewSet):
+    authentication_classes = [AuthenticationMiddleware]
     queryset = Likes.objects.all()
     serializer = LikeSerializer
     
@@ -54,6 +59,8 @@ class LikeComment(viewsets.ModelViewSet):
         return response({"message": "Like added to the comment succesfully. "}, status=status.HTTP_201_CREATED)
     
 class DeleteLike(viewsets.ModelViewSet):
+    authentication_classes = [AuthenticationMiddleware]
+    permission_classes = [IsAuthenticatedUser]
     queryset = Likes.objects.all()
     serializer = LikeSerializer
 
