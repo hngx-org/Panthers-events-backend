@@ -1,10 +1,10 @@
-from .models import Like
-from users.models import User
+from .models import Likes
+# from users.models import Users
 from rest_framework import serializers
 
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Like
+        model = Likes
         fields = '__all__'
         # Added For Proper Data Response
         depth = 1

@@ -1,15 +1,12 @@
 from django.db import models
-from users.models import User
-from events.models import Comment
+from users.models import Users
+from events.models import Comments
 
-
-class Like(models.Model):
-    # A simple model that creates a Like Object Instance by adding the User Foreign Key
-    user = models.ForeignKey(User, on_delete=models.CASCADE, db_column="comment_id")
-    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, db_column="user_id")
+class Likes(models.Model):
+    user = models.OneToOneField(Users, models.CASCADE, primary_key=True)  # The composite primary key (user_id, comment_id) found, that is not supported. The first column is selected.
+    comment = models.ForeignKey(Comments, models.CASCADE)
 
     class Meta:
-        db_table = "likes"
-
-    def __str__(self) -> str:
-        return f"Like by User{self.user.id} on Comment {self.comment.id}"
+        managed = False
+        db_table = 'likes'
+        unique_together = (('user', 'comment'),)

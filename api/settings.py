@@ -132,7 +132,7 @@ WSGI_APPLICATION = "api.wsgi.application"
 #         }
 #     }
 
-DATABASE_ROUTERS = ['db_routers.DefaultDBRouter', 'db_routers.SharedDBRouter']
+DATABASE_ROUTERS = ['api.db_routers.DefaultDBRouter', 'api.db_routers.SharedDBRouter']
 
 DATABASES = {
         'shared_db': {
@@ -149,7 +149,18 @@ DATABASES = {
             'PORT': 3306,
             'USER': 'team',
             'PASSWORD': 'event_team',
+            # 'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
         },
+        # "default": {
+        #     'ENGINE': 'django.db.backends.mysql',
+        #     'NAME': 'event-app-api',
+        #     'HOST': 'aws.connect.psdb.cloud',
+        #     'PORT': 3306,
+        #     'USER': 'qosgvahpghgf9ux34r6h',
+        #     'PASSWORD': 'pscale_pw_HT8AQFAeg2fJXtBy87HqbBVW4NoXdrLIOMjSMGVa8vw',
+        #     # 'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
+        # }
+    
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
@@ -159,7 +170,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'users.Users'
 
 
 AUTH_PASSWORD_VALIDATORS = [

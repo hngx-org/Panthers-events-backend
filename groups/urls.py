@@ -1,13 +1,12 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import (ImageViewSet,
+from .views import (
                     GroupViewSet,
                     UserGroupsViewSet,
                     GroupEventsViewSet,
                     GroupImageViewSet
                     )
 router = DefaultRouter()
-router.register(r'images', ImageViewSet)
 router.register(r'groups', GroupViewSet, basename='groups')
 # router.register(r'groups/<str:id>', GroupViewSet)
 router.register(r'usergroups', UserGroupsViewSet)

@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 from django.views import View
 from .serializers import UserSerializer
-from .models import User
+from .models import Users
 from authlib.integrations.django_client import OAuth
 from django.contrib.auth import get_user_model
 from rest_framework import status
@@ -22,11 +22,11 @@ oauth.register(
 
 # Create your views here.
 class UserView(generics.ListCreateAPIView):
-    queryset = User.objects.all()
+    queryset = Users.objects.all()
     serializer_class = UserSerializer
     
 class SingleUserView(generics.RetrieveUpdateAPIView):
-    queryset = User.objects.all()
+    queryset = Users.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'id'  # Set the lookup field to 'id'
     

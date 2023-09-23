@@ -1,22 +1,25 @@
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveAPIView, DestroyAPIView
-from events.models import Event, Comment
 from events.serializers import EventSerializer, ExpressInterestSerializer, CommentSerializer
-from users.models import User
+from users.models import Users
 from rest_framework import status, viewsets
-from .models import Comment_Image, Comment
-from .serializers import ImageSerializer
+from .models import CommentImages, Comments, Events, Images
+from .serializers import ImageSerializer, RealImageSerializer
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 
 
+class ImageCreate(ListCreateAPIView):
+    queryset = Images.objects.all()
+    serializer_class = RealImageSerializer
+
 class EventListCreateAPIView(ListCreateAPIView):
-    queryset = Event.objects.all()
+    queryset = Events.objects.all()
     serializer_class = EventSerializer
 
 
 class RetrieveEventAPIView(RetrieveAPIView):
-    queryset = Event.objects.all()
+    queryset = Events.objects.all()
     serializer_class = EventSerializer
 
 
@@ -25,7 +28,7 @@ def get_event_object(eventId):
     if not isinstance(eventId, int):
         return Response({"error": "Event ID must be an integer format."}, status=status.HTTP_400_BAD_REQUEST)
     else:
-        event = get_object_or_404(Event, id=eventId)
+        event = get_object_or_404(Events, id=eventId)
         return event
 
 
@@ -77,11 +80,11 @@ class ExpressInterestView(CreateAPIView):
         # Validate if user and event exist
 
         try:
-            user = User.objects.get(id=userId)
-            event = Event.objects.get(id=eventId)
-        except User.DoesNotExist:
+            user = Users.objects.get(id=userId)
+            event = Events.objects.get(id=eventId)
+        except Users.DoesNotExist:
             return Response({"message": "User does not exist"}, status=status.HTTP_404_NOT_FOUND)
-        except Event.DoesNotExist:
+        except Events.DoesNotExist:
             return Response({"message": "Event does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
         # creates association between user and event
@@ -100,11 +103,11 @@ class DeleteExpressInterestView(DestroyAPIView):
         # Validate if user and event exist
 
         try:
-            user = User.objects.get(id=userId)
-            event = Event.objects.get(id=eventId)
-        except User.DoesNotExist:
+            user = Users.objects.get(id=userId)
+            event = Events.objects.get(id=eventId)
+        except Users.DoesNotExist:
             return Response(data={"message": "User does not exist"}, status=status.HTTP_404_NOT_FOUND)
-        except Event.DoesNotExist:
+        except Events.DoesNotExist:
             return Response(data={"message": "Event does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
         # deletes association between user and event
@@ -114,18 +117,18 @@ class DeleteExpressInterestView(DestroyAPIView):
 
 # ADDING IMAGE TO A COMMENT(POST)
 class CreateImage(viewsets.ModelViewSet):
-    queryset = Comment_Image.objects.all()
+    queryset = CommentImages.objects.all()
     serializer = ImageSerializer
 
     def create(self, request, commentId):
         try:
-            comment = Comment.objects.get(id=commentId)
-        except Comment.DoesNotExist:
+            comment = Comments.objects.get(id=commentId)
+        except Comments.DoesNotExist:
             return Response({"error": "Comment not Found."}, status=status.HTTP_404_NOT_FOUND)
 
         imageData = request.data.get('image')
         if imageData:
-            Comment_Image.objects.create(comment=comment, image=imageData)
+            CommentImages.objects.create(comment=comment, image=imageData)
             return Response({"message": "Image added to the comment successfully."}, status=status.HTTP_201_CREATED)
         else:
             return Response({"error": "Image data is missing."}, status=status.HTTP_400_BAD_REQUEST)
@@ -133,15 +136,15 @@ class CreateImage(viewsets.ModelViewSet):
 
 # GETTING IMAGES FOR A COMMENT(GET)
 class ListImage(viewsets.ModelViewSet):
-    queryset = Comment_Image.objects.all()
+    queryset = CommentImages.objects.all()
     serializer = ImageSerializer
 
     def list(self, request, commentId):
         try:
-            comment = Comment.objects.get(id=commentId)
-        except Comment.DoesNotExist:
+            comment = Comments.objects.get(id=commentId)
+        except Comments.DoesNotExist:
             return Response({"error": "Comment not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        images = Comment_Image.objects.filter(comment=comment)
+        images = CommentImages.objects.filter(comment=comment)
         serializer = ImageSerializer(images, many=True)
         return Response(serializer.data)

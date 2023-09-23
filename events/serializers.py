@@ -1,17 +1,19 @@
 from rest_framework.serializers import ModelSerializer
-from events.models import *
+from events.models import (
+    Events, EventThumbnail, InterestedEvents, Images, CommentImages, Comments
+    )
 from rest_framework import serializers
 
 
 class EventSerializer(ModelSerializer):
     class Meta:
-        model = Event
+        model = Events
         fields = '__all__'
         
         
 class CommentSerializer(ModelSerializer):
     class Meta:
-        model = Comment
+        model = Comments
         fields = '__all__'
 
 
@@ -19,8 +21,13 @@ class ExpressInterestSerializer(serializers.Serializer):
     userId = serializers.IntegerField()
     eventId = serializers.IntegerField()
 
+class RealImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Images
+        fields = '__all__'
+
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Comment_Image
+        model = CommentImages
         fields = ('image')
