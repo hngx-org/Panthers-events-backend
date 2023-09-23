@@ -21,7 +21,7 @@ class Event(models.Model):
     def __str__(self):
         return self.title
     
-class Even_Thumbnail(models.Model):
+class Event_Thumbnail(models.Model):
     #image_id = models.ForeignKey(Image, on_delete=models.CASCADE)
     event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
 

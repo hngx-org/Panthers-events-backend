@@ -1,6 +1,13 @@
 from django.urls import path
 from . import views
 from . views import CreateImage, ListImage
+from rest_framework.routers import DefaultRouter
+
+
+
+router = DefaultRouter()
+router.register('event-thumbnail', views.EventThumbnailViewSet)
+router.register('interested-events', views.InterestedEventsViewSet)
 
 
 urlpatterns = [
@@ -15,4 +22,4 @@ urlpatterns = [
 
     path('comments/<str:commentId>/images/', CreateImage.as_view({'post': 'create'}), name='add-comment-image'),
     path('comments/<str:commentId>/images/list/', ListImage.as_view({'get': 'list'}), name='list-comment-images')
-]
+] + router.urls
