@@ -9,6 +9,12 @@ from django.contrib.auth import get_user_model
 from rest_framework import status
 from django.urls import reverse
 import uuid
+from .authentication import AuthenticationMiddleware, IsAuthenticatedUser
+from rest_framework.views import APIView
+from django.core.cache import cache
+from itsdangerous import URLSafeTimedSerializer
+from rest_framework import permissions
+
 
 CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 oauth = OAuth()
@@ -21,11 +27,15 @@ oauth.register(
 )
 
 # Create your views here.
-class UserView(generics.ListCreateAPIView):
+class UserView(generics.ListAPIView):
     queryset = Users.objects.all()
     serializer_class = UserSerializer
+    authentication_classes = [AuthenticationMiddleware]
+    permission_classes = [IsAuthenticatedUser]
     
 class SingleUserView(generics.RetrieveUpdateAPIView):
+    authentication_classes = [AuthenticationMiddleware]
+    permission_classes = [IsAuthenticatedUser]
     queryset = Users.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'id'  # Set the lookup field to 'id'
@@ -36,24 +46,38 @@ class LoginView(View):
         redirect_uri = request.build_absolute_uri(reverse('auth'))
         return oauth.google.authorize_redirect(request, redirect_uri)
 
-class AuthView(View):
+
+
+class AuthView(APIView):
     def get(self, request):
         token = oauth.google.authorize_access_token(request)
-        
-        User = get_user_model() 
         email = token.get('userinfo', {}).get('email')
         name = token.get('userinfo', {}).get('name')
         picture = token.get('userinfo', {}).get('picture')
+        access_token = token.get('access_token', {})
         id = token.get('userinfo', {}).get('sub')
         # access_token = token.get('access_token', {})
         
         try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            user = User.objects.create(email=email, id=str(id), name=name, avatar=picture)
-                    
-        user_serializer = UserSerializer(user)
+            user = Users.objects.get(email=email)
+        except Users.DoesNotExist:
+            user = Users.objects.create(email=email, id=str(id), name=name, avatar=picture)
         
-        redirect_uri = request.build_absolute_uri(reverse('user_detail', kwargs={"id": user.id}))
+        # Set the is_active status in Redis
+        cache_key = f'user_active_status:{user.id}'
+        cache.set(cache_key, True)
+
+        # Generate a session token
+        serializer = URLSafeTimedSerializer(AuthenticationMiddleware.secret_key)
+        session_token = serializer.dumps(str(user.id))
         
-        return redirect(redirect_uri)
+        data = {
+            "success": True,
+            "user_id": id,
+            "session_token": session_token,
+            "status": 200
+        }
+        
+        response = Response(data, status=200)
+
+        return response
