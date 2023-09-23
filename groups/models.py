@@ -1,31 +1,11 @@
 from django.db import models
-from users.models import User  
-from events.models import Event, generateUUID
+from users.models import Users
+from events.models import Events, Images, generateUUID
 
 
-class Image(models.Model):
-    id = models.CharField(max_length=255,
-                          primary_key=True,
-                          editable=False,
-                          default=generateUUID,
-                         )
-    url = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class meta:
-        managed = False
-        db_table = 'images'
-
-
-class Group(models.Model):
-    id = models.CharField(max_length=255,
-                          primary_key=True,
-                          editable=False,
-                          default=generateUUID,
-                          )
-    title = models.CharField(max_length=225)
-    creator_id = models.ForeignKey(User, on_delete=models.CASCADE)
+class Groups(models.Model):
+    id = models.CharField(primary_key=True, max_length=255, default=generateUUID)
+    title = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
  
@@ -35,8 +15,8 @@ class Group(models.Model):
 
 
 class UserGroups(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    group = models.ForeignKey(Groups, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -45,8 +25,8 @@ class UserGroups(models.Model):
 
 
 class GroupEvents(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    event = models.ForeignKey(Events, on_delete=models.CASCADE)
+    group = models.ForeignKey(Groups, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
@@ -55,8 +35,8 @@ class GroupEvents(models.Model):
 
 
 class GroupImage(models.Model):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    group = models.ForeignKey(Groups, on_delete=models.CASCADE)
+    image = models.ForeignKey(Images, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
