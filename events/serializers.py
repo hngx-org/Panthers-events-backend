@@ -12,13 +12,13 @@ class EventSerializer(ModelSerializer):
 
 class EventThumbnailSerializer(ModelSerializer):
     class Meta:
-        model = Event_Thumbnail
+        model = EventThumbnail
         fields = '__all__'
         
         
 class InterestedEventSerializer(ModelSerializer):
     class Meta:
-        model = Interested_Events
+        model = InterestedEvents
         fields = '__all__'
 
 

@@ -2,8 +2,8 @@ from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveAP
 from events.serializers import EventSerializer, ExpressInterestSerializer, CommentSerializer
 from users.models import Users
 from rest_framework import status, viewsets
-from .models import CommentImages, Comments, Events, Images
-from .serializers import ImageSerializer, RealImageSerializer
+from .models import CommentImages, Comments, Events, Images, EventThumbnail, InterestedEvents
+from .serializers import ImageSerializer, RealImageSerializer, EventThumbnailSerializer, InterestedEventSerializer
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
@@ -24,11 +24,11 @@ class RetrieveEventAPIView(RetrieveAPIView):
 
 
 class EventThumbnailViewSet(viewsets.ModelViewSet):
-    queryset = Event_Thumbnail.objects.all()
+    queryset = EventThumbnail.objects.all()
     serializer_class = EventThumbnailSerializer
 
 class InterestedEventsViewSet(viewsets.ModelViewSet):
-    queryset = Interested_Events.objects.all()
+    queryset = InterestedEvents.objects.all()
     serializer_class = InterestedEventSerializer
 
 

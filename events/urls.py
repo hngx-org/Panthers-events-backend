@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from . views import CreateImage, ListImage, ImageCreate
+from groups.urls import router
 
 
 urlpatterns = [
