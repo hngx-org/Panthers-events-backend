@@ -1,6 +1,6 @@
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveAPIView, DestroyAPIView
-from events.models import Event, Comment
-from events.serializers import EventSerializer, ExpressInterestSerializer, CommentSerializer
+from events.models import Event, Comment, Event_Thumbnail, Interested_Events
+from events.serializers import EventSerializer, ExpressInterestSerializer, CommentSerializer, EventThumbnailSerializer, InterestedEventSerializer
 from users.models import User
 from rest_framework import status, viewsets
 from .models import Comment_Image, Comment
@@ -18,6 +18,15 @@ class EventListCreateAPIView(ListCreateAPIView):
 class RetrieveEventAPIView(RetrieveAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+
+class EventThumbnailViewSet(viewsets.ModelViewSet):
+    queryset = Event_Thumbnail.objects.all()
+    serializer_class = EventThumbnailSerializer
+
+class InterestedEventsViewSet(viewsets.ModelViewSet):
+    queryset = Interested_Events.objects.all()
+    serializer_class = InterestedEventSerializer
 
 
 # Verify the event object from the Event model
