@@ -28,9 +28,9 @@ class CommentSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class ExpressInterestSerializer(serializers.Serializer):
-    userId = serializers.IntegerField()
-    eventId = serializers.IntegerField()
+# class ExpressInterestSerializer(serializers.Serializer):
+#     userId = serializers.IntegerField()
+#     eventId = serializers.IntegerField()
 
 class RealImageSerializer(serializers.ModelSerializer):
     class Meta:

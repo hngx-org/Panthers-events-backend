@@ -20,8 +20,8 @@ class UserGroupsSerializer(serializers.ModelSerializer):
 
 
 class GroupEventsSerializer(serializers.ModelSerializer):
-    event = serializers.PrimaryKeyRelatedField(queryset=Events.objects.all())
-    group = serializers.PrimaryKeyRelatedField(queryset=Groups.objects.all())
+    # event = serializers.PrimaryKeyRelatedField(queryset=Events.objects.all())
+    # group = serializers.PrimaryKeyRelatedField(queryset=Groups.objects.all())
 
     class Meta:
         model = GroupEvents

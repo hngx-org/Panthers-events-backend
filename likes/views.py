@@ -1,73 +1,42 @@
+from rest_framework import viewsets, status, response
+from rest_framework.decorators import action
+
 from likes.serializers import LikeSerializer
 from likes.models import Likes
 from events.models import Comments
 from users.models import Users
-from rest_framework import generics, viewsets, status, response
-from users.authentication import AuthenticationMiddleware,IsAuthenticatedUser
+from users.authentication import AuthenticationMiddleware, IsAuthenticatedUser
 
-
-"""
-    Three Views To :
-    - List all Likes
-    - List Likes to a particular comment
-    - Detail List of 1 Like
-"""
-
-
-class CommentLikes(generics.ListCreateAPIView):
+class LikeViewSet(viewsets.ModelViewSet):
     authentication_classes = [AuthenticationMiddleware]
-    queryset = Likes.objects.all()
     serializer_class = LikeSerializer
-
-    def get_queryset(self):
-        comment_id = self.kwargs['comment_id']
-        comment = Comments.objects.filter(id=comment_id)
-        return self.queryset.filter(comment == comment)
-    
-class LikeList(generics.ListCreateAPIView):
-    authentication_classes = [AuthenticationMiddleware]
     queryset = Likes.objects.all()
-    serializer_class = LikeSerializer
 
-class LikeDetail(generics.ListCreateAPIView):
-    authentication_classes = [AuthenticationMiddleware]
-    queryset = Likes.objects.all()
-    serializer_class = LikeSerializer
-
-
-# creating a likes on comment
-class LikeComment(viewsets.ModelViewSet):
-    authentication_classes = [AuthenticationMiddleware]
-    queryset = Likes.objects.all()
-    serializer = LikeSerializer
-    
-    def create(self, request, commentId, userId):
+    # Create a like for a comment
+    @action(detail=False, methods=['post'])
+    def create_like(self, request, comment_id, user_id):
         try:
-            comment = Comments.objects.get(id=commentId)
-            user = Users.objects.get(id=userId)
+            comment = Comments.objects.get(id=comment_id)
+            user = Users.objects.get(id=user_id)
         except Comments.DoesNotExist:
             return response({"error": "Comment not found."}, status=status.HTTP_404_NOT_FOUND)
         except Users.DoesNotExist:
-            return response ({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
-        
-        # check if the user has already liked the comment
-        existingLike = Likes.objects.filter(comment=comment, user=user).first()
-        if existingLike:
-            return response({"message": "User already liked this comment. "}, status=status.HTTP_200_OK)
-        
-        Likes.objects.create(comment=comment, user=user)
-        return response({"message": "Like added to the comment succesfully. "}, status=status.HTTP_201_CREATED)
-    
-class DeleteLike(viewsets.ModelViewSet):
-    authentication_classes = [AuthenticationMiddleware]
-    permission_classes = [IsAuthenticatedUser]
-    queryset = Likes.objects.all()
-    serializer = LikeSerializer
+            return response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
-    def destroy(self, request, commentId, userId):
+        # Check if the user has already liked the comment
+        existing_like = Likes.objects.filter(comment=comment, user=user).first()
+        if existing_like:
+            return response({"message": "User already liked this comment."}, status=status.HTTP_200_OK)
+
+        Likes.objects.create(comment=comment, user=user)
+        return response({"message": "Like added to the comment successfully."}, status=status.HTTP_201_CREATED)
+
+    # Delete a like for a comment
+    @action(detail=False, methods=['delete'])
+    def delete_like(self, request, comment_id, user_id):
         try:
-            comment = Comments.objects.get(id=commentId)
-            user = Users.objects.get(id=userId)
+            comment = Comments.objects.get(id=comment_id)
+            user = Users.objects.get(id=user_id)
         except Comments.DoesNotExist:
             return response({"error": "Comment not found."}, status=status.HTTP_404_NOT_FOUND)
         except Users.DoesNotExist:
@@ -80,4 +49,3 @@ class DeleteLike(viewsets.ModelViewSet):
             return response({"message": "Like removed from the comment successfully."}, status=status.HTTP_204_NO_CONTENT)
         else:
             return response({"message": "User has not liked this comment."}, status=status.HTTP_200_OK)
-

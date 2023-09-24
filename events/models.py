@@ -6,7 +6,7 @@ def generateUUID():
     return str(uuid.uuid4())
 
 class Events(models.Model):
-    id = models.CharField(primary_key=True, max_length=255, default=generateUUID())
+    id = models.CharField(primary_key=True, max_length=255, default=generateUUID)
     title = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     location = models.TextField(blank=True, null=True)
