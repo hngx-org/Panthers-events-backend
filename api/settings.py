@@ -125,11 +125,11 @@ DATABASES = {
             'HOST': os.environ.get('DB_HOST'),
             'PORT': os.environ.get('DB_PORT'),
             'USER': os.environ.get('DB_USER'),
-            'PASSWORD': os.environ.get('MYSQL_ATTR_SSL_CA'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
             'OPTIONS': {
             'ssl': {
                 # 'ca': '/etc/ssl/ca.pem',
-                'cert': os.environ.get('DB_PASSWORD'),
+                'cert': os.environ.get('MYSQL_ATTR_SSL_CA'),
                 # 'key': '/etc/ssl/client-key.pem',
             },
             }
