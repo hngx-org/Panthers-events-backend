@@ -2,6 +2,7 @@ class DefaultDBRouter:
     route_app_labels = {
         "auth", "contenttypes", "admin", "sessions", "messages",
         "staticfiles", "rest_framework", "drf_yasg", "storages",
+        "corsheaders"
         }
 
     def db_for_read(self, model, **hints):
