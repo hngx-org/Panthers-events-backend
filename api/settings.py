@@ -114,7 +114,7 @@ DATABASES = {
             'OPTIONS': {
             'ssl': {
                 # 'ca': '/etc/ssl/ca.pem',
-                'cert': os.environ.get('MYSQL_ATTR_SSL_CA'),
+                # 'cert': os.environ.get('MYSQL_ATTR_SSL_CA'),
                 # 'key': '/etc/ssl/client-key.pem',
             },
             }
