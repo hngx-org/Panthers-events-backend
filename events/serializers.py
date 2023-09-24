@@ -41,4 +41,4 @@ class RealImageSerializer(serializers.ModelSerializer):
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = CommentImages
-        fields = ['image']
+        fields = ['image',]
