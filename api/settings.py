@@ -111,13 +111,13 @@ DATABASES = {
             'PORT': os.environ.get('DB_PORT'),
             'USER': os.environ.get('DB_USER_TWO'),
             'PASSWORD': os.environ.get('DB_PASSWORD_TWO'),
-            # 'OPTIONS': {
-            # 'ssl': {
-            #     'ca': '/etc/ssl/ca.pem',
-            #     'cert': '/etc/ssl/client-cert.pem',
-            #     'key': '/etc/ssl/client-key.pem',
-            # },
-            # }
+            'OPTIONS': {
+            'ssl': {
+                # 'ca': '/etc/ssl/ca.pem',
+                'cert': os.environ.get('DB_PASSWORD'),
+                # 'key': '/etc/ssl/client-key.pem',
+            },
+            }
         },
         "default": {
             'ENGINE': 'django.db.backends.mysql',
@@ -126,13 +126,13 @@ DATABASES = {
             'PORT': os.environ.get('DB_PORT'),
             'USER': os.environ.get('DB_USER'),
             'PASSWORD': os.environ.get('DB_PASSWORD'),
-            # 'OPTIONS': {
-            # 'ssl': {
-            #     'ca': '/etc/ssl/ca.pem',
-            #     'cert': '/etc/ssl/client-cert.pem',
-            #     'key': '/etc/ssl/client-key.pem',
-            # },
-            # }
+            'OPTIONS': {
+            'ssl': {
+                # 'ca': '/etc/ssl/ca.pem',
+                'cert': os.environ.get('DB_PASSWORD'),
+                # 'key': '/etc/ssl/client-key.pem',
+            },
+            }
         }
 }
 
