@@ -62,10 +62,14 @@ INSTALLED_APPS = [
     "drf_yasg",
     "likes",
     "storages",
+    
+    
+     "corsheaders",
 
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -180,3 +184,6 @@ AUTHLIB_OAUTH_CLIENTS = {
         'client_secret': os.environ.get('CLIENT_SECRET'),
     }
 }
+
+
+CORS_ALLOW_ALL_ORIGINS = True
