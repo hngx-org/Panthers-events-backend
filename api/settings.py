@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     "drf_yasg",
     "likes",
     "storages",
-
     "corsheaders",
 
 ]

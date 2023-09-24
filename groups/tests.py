@@ -4,23 +4,23 @@ from rest_framework import status
 from rest_framework.test import APIClient
 from .models import Groups, UserGroups, GroupEvents, GroupImage
 from .serializers import (
-    ImageSerializer,
     GroupSerializer,
     UserGroupsSerializer,
     GroupEventsSerializer,
     GroupImageSerializer,
     
 )
-from users.models import User  # Import your User model here
-from events.models import Events, Images  # Import your Event model here
+from users.models import Users  # Import your Users model here
+from events.models import Events, Images  # Import your Events model here
+from events.serializers import ImageSerializer
 
 class ImageTests(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create(username='testuser', password='testpassword')
+        self.user = Users.objects.create(username='testuser', password='testpassword')
         self.client.force_authenticate(user=self.user)
         self.image_data = {'url': 'https://example.com/image.jpg'}
-        self.image = Image.objects.create(url=self.image_data['url'])
+        self.image = Images.objects.create(url=self.image_data['url'])
 
     def test_create_image(self):
         response = self.client.post(reverse('image-list'), self.image_data, format='json')
@@ -28,14 +28,14 @@ class ImageTests(TestCase):
 
     def test_get_image_list(self):
         response = self.client.get(reverse('image-list'))
-        images = Image.objects.all()
+        images = Images.objects.all()
         serializer = ImageSerializer(images, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_image_detail(self):
         response = self.client.get(reverse('image-detail', args=[str(self.image.id)]))
-        image = Image.objects.get(pk=self.image.id)
+        image = Images.objects.get(pk=self.image.id)
         serializer = ImageSerializer(image)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -50,15 +50,15 @@ class ImageTests(TestCase):
     def test_delete_image(self):
         response = self.client.delete(reverse('image-detail', args=[str(self.image.id)]))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertFalse(Image.objects.filter(pk=self.image.id).exists())
+        self.assertFalse(Images.objects.filter(pk=self.image.id).exists())
 
 class GroupTests(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create(username='testuser', password='testpassword')
+        self.user = Users.objects.create(username='testuser', password='testpassword')
         self.client.force_authenticate(user=self.user)
-        self.group_data = {'title': 'Test Group', 'creator_id': self.user.id}
-        self.group = Group.objects.create(title=self.group_data['title'], creator_id=self.user.id)
+        self.group_data = {'title': 'Test Groups', 'creator_id': self.user.id}
+        self.group = Groups.objects.create(title=self.group_data['title'], creator_id=self.user.id)
 
     def test_create_group(self):
         response = self.client.post(reverse('group-list'), self.group_data, format='json')
@@ -66,20 +66,20 @@ class GroupTests(TestCase):
 
     def test_get_group_list(self):
         response = self.client.get(reverse('group-list'))
-        groups = Group.objects.all()
+        groups = Groups.objects.all()
         serializer = GroupSerializer(groups, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_group_detail(self):
         response = self.client.get(reverse('group-detail', args=[str(self.group.id)]))
-        group = Group.objects.get(pk=self.group.id)
+        group = Groups.objects.get(pk=self.group.id)
         serializer = GroupSerializer(group)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_update_group(self):
-        updated_data = {'title': 'Updated Test Group'}
+        updated_data = {'title': 'Updated Test Groups'}
         response = self.client.put(reverse('group-detail', args=[str(self.group.id)]), updated_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.group.refresh_from_db()
@@ -88,15 +88,15 @@ class GroupTests(TestCase):
     def test_delete_group(self):
         response = self.client.delete(reverse('group-detail', args=[str(self.group.id)]))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertFalse(Group.objects.filter(pk=self.group.id).exists())
+        self.assertFalse(Groups.objects.filter(pk=self.group.id).exists())
 
 class ViewTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create(username='testuser', password='testpassword')
+        self.user = Users.objects.create(username='testuser', password='testpassword')
         self.client.force_authenticate(user=self.user)
-        self.group_data = {'title': 'Test Group', 'creator_id': self.user.id}
-        self.group = Group.objects.create(title=self.group_data['title'], creator_id=self.user.id)
+        self.group_data = {'title': 'Test Groups', 'creator_id': self.user.id}
+        self.group = Groups.objects.create(title=self.group_data['title'], creator_id=self.user.id)
 
     def test_create_group(self):
         response = self.client.post(reverse('group-list'), self.group_data, format='json')
@@ -104,20 +104,20 @@ class ViewTestCase(TestCase):
 
     def test_get_group_list(self):
         response = self.client.get(reverse('group-list'))
-        groups = Group.objects.all()
+        groups = Groups.objects.all()
         serializer = GroupSerializer(groups, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_group_detail(self):
         response = self.client.get(reverse('group-detail', args=[str(self.group.id)]))
-        group = Group.objects.get(pk=self.group.id)
+        group = Groups.objects.get(pk=self.group.id)
         serializer = GroupSerializer(group)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_update_group(self):
-        updated_data = {'title': 'Updated Test Group'}
+        updated_data = {'title': 'Updated Test Groups'}
         response = self.client.put(reverse('group-detail', args=[str(self.group.id)]), updated_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.group.refresh_from_db()
@@ -126,18 +126,18 @@ class ViewTestCase(TestCase):
     def test_delete_group(self):
         response = self.client.delete(reverse('group-detail', args=[str(self.group.id)]))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertFalse(Group.objects.filter(pk=self.group.id).exists())
+        self.assertFalse(Groups.objects.filter(pk=self.group.id).exists())
 
 
 class UserGroupsTests(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create(username='testuser', password='testpassword')
+        self.user = Users.objects.create(username='testuser', password='testpassword')
         self.client.force_authenticate(user=self.user)
         
         # Create a test group
-        self.group_data = {'title': 'Test Group', 'creator_id': self.user.id}
-        self.group = Group.objects.create(title=self.group_data['title'], creator_id=self.user.id)
+        self.group_data = {'title': 'Test Groups', 'creator_id': self.user.id}
+        self.group = Groups.objects.create(title=self.group_data['title'], creator_id=self.user.id)
         
         # Create a UserGroups instance
         self.user_groups_data = {'user': self.user.id, 'group': self.group.id}
@@ -180,16 +180,16 @@ class GroupEventsTests(TestCase):
 
         # Create a test user
         self.user_data = {'username': 'testuser', 'password': 'testpassword'}
-        self.user = User.objects.create_user(**self.user_data)
+        self.user = Users.objects.create_user(**self.user_data)
         self.client.force_authenticate(user=self.user)
 
         # Create a test group
-        self.group_data = {'title': 'Test Group', 'creator_id': self.user.id}
-        self.group = Group.objects.create(title=self.group_data['title'], creator_id=self.user.id)
+        self.group_data = {'title': 'Test Groups', 'creator_id': self.user.id}
+        self.group = Groups.objects.create(title=self.group_data['title'], creator_id=self.user.id)
 
         # Create a test event
         self.event_data = {'name': 'Test Event', 'description': 'Event Description'}
-        self.event = Event.objects.create(**self.event_data)
+        self.event = Events.objects.create(**self.event_data)
 
         # Create a GroupEvents instance
         self.group_events_data = {'group': self.group.id, 'event': self.event.id}
@@ -232,16 +232,16 @@ class GroupImageTests(TestCase):
 
         # Create a test user
         self.user_data = {'username': 'testuser', 'password': 'testpassword'}
-        self.user = User.objects.create_user(**self.user_data)
+        self.user = Users.objects.create_user(**self.user_data)
         self.client.force_authenticate(user=self.user)
 
         # Create a test group
-        self.group_data = {'title': 'Test Group', 'creator_id': self.user.id}
-        self.group = Group.objects.create(title=self.group_data['title'], creator_id=self.user.id)
+        self.group_data = {'title': 'Test Groups', 'creator_id': self.user.id}
+        self.group = Groups.objects.create(title=self.group_data['title'], creator_id=self.user.id)
 
         # Create a test image
         self.image_data = {'url': 'https://example.com/image.jpg'}
-        self.image = Image.objects.create(**self.image_data)
+        self.image = Images.objects.create(**self.image_data)
 
         # Create a GroupImage instance
         self.group_image_data = {'group': self.group.id, 'image': self.image.id}
