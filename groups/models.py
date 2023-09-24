@@ -18,23 +18,23 @@ class Groups(models.Model):
 
 
 class UserGroups(models.Model):
-    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    user = models.ManyToManyField(Users)
     group = models.ForeignKey(Groups, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
         db_table = 'user_groups'
-        unique_together = (('user', 'group'),)
+        # unique_together = (('user', 'group'),)
 
 
 class GroupEvents(models.Model):
-    event = models.ForeignKey(Events, on_delete=models.CASCADE)
+    event = models.ManyToManyField(Events)
     group = models.ForeignKey(Groups, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
         db_table = 'group_events'
-        unique_together = (('group', 'event'),)
+        # unique_together = (('group', 'event'),)
 
 
 class GroupImage(models.Model):
