@@ -18,7 +18,7 @@ class AuthenticationMiddleware(authentication.BaseAuthentication):
 
         serializer = URLSafeTimedSerializer(self.secret_key)
         try:
-            user_id = serializer.loads(token, max_age=3600)  # Adjust expiration time if needed
+            user_id = serializer.loads(token, max_age=2592000)  # Adjust expiration time if needed
         except:
             raise exceptions.AuthenticationFailed()
 
