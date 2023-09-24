@@ -51,11 +51,11 @@ urlpatterns = [
     ),
     
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
-    # path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls),
     # path("api/", include("groups.urls") ),
     # path("api/", include("events.urls") ),
     path("api/", include("users.urls") ),
     # Added Endpoint for Listing a comment Like
     # path("api/", include("likes.urls") ),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
 ]

@@ -113,9 +113,9 @@ DATABASES = {
             'PASSWORD': os.environ.get('DB_PASSWORD_TWO'),
             'OPTIONS': {
             'ssl': {
-                'ca': '/etc/ssl/ca.pem',
-                'cert': '/etc/ssl/client-cert.pem',
-                'key': '/etc/ssl/client-key.pem',
+                # 'ca': '/etc/ssl/ca.pem',
+                # 'cert': os.environ.get('MYSQL_ATTR_SSL_CA'),
+                # 'key': '/etc/ssl/client-key.pem',
             },
             }
         },
@@ -128,9 +128,9 @@ DATABASES = {
             'PASSWORD': os.environ.get('DB_PASSWORD'),
             'OPTIONS': {
             'ssl': {
-                'ca': '/etc/ssl/ca.pem',
-                'cert': '/etc/ssl/client-cert.pem',
-                'key': '/etc/ssl/client-key.pem',
+                # 'ca': '/etc/ssl/ca.pem',
+                'cert': os.environ.get('MYSQL_ATTR_SSL_CA'),
+                # 'key': '/etc/ssl/client-key.pem',
             },
             }
         }

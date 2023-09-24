@@ -13,6 +13,6 @@ from django.urls import path, include
 # router.register(r'comment-images', CommentImagesViewSet)
 # router.register(r'images', ImagesViewSet)
 
-urlpatterns = [
-    # path('', include(router.urls)),
-]
+# urlpatterns = [
+#     path('', include(router.urls)),
+# ]
