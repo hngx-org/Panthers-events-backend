@@ -18,7 +18,7 @@ class Groups(models.Model):
 
 
 class UserGroups(models.Model):
-    user = models.ManyToManyField(Users)
+    user = models.OneToOneField(Users, on_delete=models.CASCADE)
     group = models.ForeignKey(Groups, on_delete=models.CASCADE)
 
     class Meta:
@@ -28,7 +28,7 @@ class UserGroups(models.Model):
 
 
 class GroupEvents(models.Model):
-    event = models.ManyToManyField(Events)
+    event = models.OneToOneField(Events, on_delete=models.CASCADE)
     group = models.ForeignKey(Groups, on_delete=models.CASCADE)
 
     class Meta:
@@ -38,7 +38,7 @@ class GroupEvents(models.Model):
 
 
 class GroupImage(models.Model):
-    group = models.ForeignKey(Groups, on_delete=models.CASCADE)
+    group = models.OneToOneField(Groups, on_delete=models.CASCADE)
     image = models.ForeignKey(Images, on_delete=models.CASCADE)
 
     class Meta:
