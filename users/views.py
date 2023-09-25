@@ -49,6 +49,31 @@ class LoginView(View):
 
 
 class AuthView(APIView):
+    def post(self,request):
+        data = request.data
+        name = data.get("name")
+        email = data.get("email")
+        picture = data.get("photoUrl")
+        id = data.get("id")
+        
+        try:
+            user = Users.objects.get(id=id)
+        except Users.DoesNotExist:
+            user = Users.objects.create(email=email, id=str(id), name=name, avatar=picture)
+            
+        serializer = URLSafeTimedSerializer(AuthenticationMiddleware.secret_key)
+        session_token = serializer.dumps(str(user.id))
+            
+        data = {
+            "success": True,
+            "user_id": id,
+            "session_token": session_token,
+            "status": 200
+        }
+        
+        return Response(data)
+        
+        
     def get(self, request):
         token = oauth.google.authorize_access_token(request)
         email = token.get('userinfo', {}).get('email')
