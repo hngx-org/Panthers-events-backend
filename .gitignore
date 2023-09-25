@@ -89,8 +89,6 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
-.vscode
-.vscode/
 myenv/
 
 # Spyder project settings
@@ -129,3 +127,7 @@ local_settings.py
 
 # production
 settings_production.py
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
+branch_structure.json

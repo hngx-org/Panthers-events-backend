@@ -115,18 +115,18 @@ DATABASES = {
             'USER': os.environ.get('DB_USER_TWO'),
             'PASSWORD': os.environ.get('DB_PASSWORD_TWO'),
         },
-        # "default": {
-        #     'ENGINE': 'django.db.backends.mysql',
-        #     'NAME': os.environ.get('DB_NAME'),
-        #     'HOST': os.environ.get('DB_HOST'),
-        #     'PORT': os.environ.get('DB_PORT'),
-        #     'USER': os.environ.get('DB_USER'),
-        #     'PASSWORD': os.environ.get('DB_PASSWORD'),
-        # }
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+            'ENGINE': "django.db.backends.postgresql_psycopg2",
+            'HOST': "dpg-ck0b041gbqfc73crb270-a.oregon-postgres.render.com",
+            'NAME': "basic_crud",
+            'USER': "basic_crud_user",
+            'PASSWORD': "ozHdIaYibCLag8fcsVRRPawWOVQ96PtP",
+            'PORT': "5432",
+        }
+        # 'default': {
+        #     'ENGINE': 'django.db.backends.sqlite3',
+        #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # }
 }
 
 
